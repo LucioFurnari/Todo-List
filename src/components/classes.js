@@ -7,3 +7,9 @@ class Todo {
         this.favorite = favorite;
     }
 }
+
+export function createTask(name,date,description,priority,favorite) {
+    const newTask = new Todo(name,date,description,priority,favorite);
+
+    return newTask;
+}
