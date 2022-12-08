@@ -49,3 +49,16 @@ table {
 
 /*-----------------------------------------------------------------*/
 
+body {
+	background-color: aquamarine;
+}
+
+nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 3fr;
+	align-items: center;
+}
+nav .logo {
+	padding: 1rem ;
+	margin-left: 6rem;
+}
