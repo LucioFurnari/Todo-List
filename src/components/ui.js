@@ -1,24 +1,12 @@
-import { createTask } from "./classes";
 
 export function createUI(){
-    const testButton = document.createElement("button");
-    testButton.classList.add("testButton")
-    testButton.textContent = "Add"
-
     const root = document.querySelector("#content");
-    root.append(navBar(),taskForm(),testButton,todoSection())
-
-    const inputName = document.querySelector(".nameInput");
-    const descriptionArea = document.querySelector(".descriptionArea");
-    const dateInput = document.querySelector(".dateInput")
-
-    testButton.addEventListener("click",() => {
-    const name = createTask(inputName.value,dateInput.value,descriptionArea.value)
-    console.log(name);
-})
+    root.append(navBar(),taskForm(),todoSection())
 }
 
 function taskForm() {
+    const formContainer = document.createElement("div");
+    formContainer.classList.add("formContainer")
     const form = document.createElement("form");
 
     const nameInput = document.createElement("input");
@@ -30,10 +18,14 @@ function taskForm() {
     dateInput.setAttribute("type","date");
     dateInput.classList.add("dateInput")
 
+    const testButton = document.createElement("button");
+    testButton.classList.add("testButton")
+    testButton.textContent = "Add"
 
-    form.append(nameInput,descriptionArea,dateInput);
-
-    return form;
+    
+    form.append(nameInput,descriptionArea,dateInput,testButton);
+    formContainer.appendChild(form)
+    return formContainer;
 }
 
 function navBar() {
@@ -54,4 +46,20 @@ function todoSection(){
     section.classList.add("todo-section")
 
     return section
+}
+
+export function createTaskUi(elem){
+    const task = document.createElement("div");
+    task.classList.add("task");
+
+    const taskName = document.createElement("p");
+    taskName.textContent = elem.name;
+    const taskDate = document.createElement("p");
+    taskDate.textContent = elem.date
+    const taskDescription = document.createElement("p");
+    taskDescription.textContent = elem.description;
+
+    task.append(taskName,taskDate,taskDescription)
+
+    return task
 }
