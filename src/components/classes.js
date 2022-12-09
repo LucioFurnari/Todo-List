@@ -1,3 +1,5 @@
+export const taskArray = [];
+
 class Todo {
     constructor(name,date,description,priority,favorite){
         this.name = name;
@@ -10,6 +12,5 @@ class Todo {
 
 export function createTask(name,date,description,priority,favorite) {
     const newTask = new Todo(name,date,description,priority,favorite);
-
-    return newTask;
+    taskArray.push(newTask);
 }
