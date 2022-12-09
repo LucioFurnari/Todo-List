@@ -6,7 +6,7 @@ export function createUI(){
     testButton.textContent = "Add"
 
     const root = document.querySelector("#content");
-    root.append(navBar(),taskForm(),testButton)
+    root.append(navBar(),taskForm(),testButton,todoSection())
 
     const inputName = document.querySelector(".nameInput");
     const descriptionArea = document.querySelector(".descriptionArea");
@@ -49,4 +49,9 @@ function navBar() {
     return nav
 }
 
+function todoSection(){
+    const section = document.createElement("div")
+    section.classList.add("todo-section")
 
+    return section
+}
