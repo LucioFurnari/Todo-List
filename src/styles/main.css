@@ -52,13 +52,39 @@ table {
 body {
 	background-color: aquamarine;
 }
-
-nav {
-	display: grid;
-	grid-template-columns: 1fr 1fr 3fr;
+#content {
+	display: grid; 
+	grid-template-areas: "nav . ."
+						"menu main main";
+	grid-template-columns: auto 1fr;
+	grid-template-rows:repeat(2,auto);
 	align-items: center;
+}
+nav {
+	display: flex;
+	align-items: center;
+	
+	grid-area: nav;
 }
 nav .logo {
 	padding: 1rem ;
-	margin-left: 6rem;
+	/* margin-left: 6rem; */
+	text-align: center;
+}
+
+.todo-section {
+	grid-area: main;
+	background-color: white;
+	height: 100vh;
+}
+.formContainer{
+	display: flex;
+	grid-area: menu;
+	height: 100%;
+	width: 100%;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(157, 157, 157);
 }
