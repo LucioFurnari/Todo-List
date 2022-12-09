@@ -10,6 +10,9 @@ export function addEvents(){
     const descriptionArea = document.querySelector(".descriptionArea")
     testButton.addEventListener("click",(e) => {
         e.preventDefault()
+        while(main.firstChild){
+            main.removeChild(main.firstChild)
+        }
         createTask(nameInput.value,dateInput.value,descriptionArea.value);
         taskArray.forEach(elem => {
             main.append(createTaskUi(elem))
