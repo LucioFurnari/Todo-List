@@ -12,12 +12,14 @@ function taskForm() {
 
     const nameInput = document.createElement("input");
     nameInput.setAttribute("type","text");
+    nameInput.required = true;
     nameInput.classList.add("nameInput");
     const descriptionArea = document.createElement("textarea")
     descriptionArea.classList.add("descriptionArea");
     const dateInput = document.createElement("input")
     dateInput.setAttribute("type","date");
-    dateInput.classList.add("dateInput")
+    dateInput.classList.add("dateInput");
+    dateInput.required = true;
 
     const submitButton = document.createElement("button");
     submitButton.classList.add("submitButton")
@@ -70,11 +72,11 @@ export function createTaskUi(elem){
     task.classList.add("task");
 
     const taskName = document.createElement("p");
-    taskName.textContent = elem.name;
+    taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
-    taskDate.textContent = elem.date
+    taskDate.textContent = "Due Date: " + elem.date
     const taskDescription = document.createElement("p");
-    taskDescription.textContent = elem.description;
+    taskDescription.textContent = "Description: " + elem.description;
 
     task.append(taskName,taskDate,taskDescription)
 
