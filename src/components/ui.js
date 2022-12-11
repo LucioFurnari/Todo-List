@@ -1,13 +1,14 @@
 
 export function createUI(){
     const root = document.querySelector("#content");
-    root.append(navBar(),taskForm(),todoMenu(),todoSection())
+    root.append(navBar(),todoMenu(),todoSection())
 }
 
 function taskForm() {
     const formContainer = document.createElement("div");
     formContainer.classList.add("formContainer")
     const form = document.createElement("form");
+    form.classList.add("taskForm")
 
     const nameInput = document.createElement("input");
     nameInput.setAttribute("type","text");
@@ -27,12 +28,6 @@ function taskForm() {
 function todoMenu() {
     const menu = document.createElement("div");
     menu.classList.add("todoMenu");
-
-    const addTaskButton = document.createElement("button");
-    addTaskButton.classList.add("addTaskButton")
-    addTaskButton.textContent = "Add"
-
-    menu.append(addTaskButton)
 
     return menu
 }
@@ -54,6 +49,11 @@ function todoSection(){
     const section = document.createElement("div")
     section.classList.add("todo-section")
 
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("addTaskButton")
+    addTaskButton.textContent = "Add"
+
+    section.append(addTaskButton,taskForm())
     return section
 }
 
