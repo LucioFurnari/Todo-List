@@ -54,8 +54,8 @@ body {
 }
 #content {
 	display: grid; 
-	grid-template-areas: "nav . ."
-						"menu main main";
+	grid-template-areas: "nav nav"
+						"menu main";
 	grid-template-columns: auto 1fr;
 	grid-template-rows:repeat(2,auto);
 	align-items: center;
@@ -68,16 +68,16 @@ body {
 nav {
 	display: flex;
 	align-items: center;
-	
 	grid-area: nav;
 }
 nav .logo {
 	padding: 1rem ;
-	/* margin-left: 6rem; */
 	text-align: center;
+	margin: 0 4rem;
 }
 nav .inputFilter {
-	grid-column-start: 2;
+	width: 40%;
+	margin-left: 1rem;
 }
 
 /*--------------------------------- Todo section ---------------------------------*/
@@ -86,7 +86,7 @@ nav .inputFilter {
 	display:flex;
 	flex-direction: column;
 	align-items: flex-start;
-	
+
 	grid-area: main;
 	background-color: white;
 	height: 100vh;
@@ -105,9 +105,10 @@ nav .inputFilter {
 	background-color: rgb(157, 157, 157);
 }
 
-
+/*--------------------------------- Menu ---------------------------------*/
 .todoMenu {
 	grid-area: menu;
 	height: 100%;
+	width: 200px;
 	background-color: rgb(150, 175, 240);
 }
