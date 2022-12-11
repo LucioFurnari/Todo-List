@@ -19,8 +19,11 @@ function taskForm() {
     dateInput.setAttribute("type","date");
     dateInput.classList.add("dateInput")
 
+    const submitButton = document.createElement("button");
+    submitButton.classList.add("submitButton")
+    submitButton.textContent = "Add"
     
-    form.append(nameInput,descriptionArea,dateInput);
+    form.append(nameInput,descriptionArea,dateInput,submitButton);
     formContainer.appendChild(form)
     return formContainer;
 }
@@ -49,11 +52,16 @@ function todoSection(){
     const section = document.createElement("div")
     section.classList.add("todo-section")
 
+    const addTaskSection = document.createElement("div");
+    const tasksContainer = document.createElement("div");
+    tasksContainer.classList.add("tasks-container")
+
     const addTaskButton = document.createElement("button");
     addTaskButton.classList.add("addTaskButton")
-    addTaskButton.textContent = "Add"
+    addTaskButton.textContent = "Add Task"
 
-    section.append(addTaskButton,taskForm())
+    addTaskSection.append(addTaskButton,taskForm())
+    section.append(addTaskSection,tasksContainer)
     return section
 }
 
