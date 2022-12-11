@@ -1,7 +1,7 @@
 
 export function createUI(){
     const root = document.querySelector("#content");
-    root.append(navBar(),taskForm(),todoSection())
+    root.append(navBar(),taskForm(),todoMenu(),todoSection())
 }
 
 function taskForm() {
@@ -18,14 +18,23 @@ function taskForm() {
     dateInput.setAttribute("type","date");
     dateInput.classList.add("dateInput")
 
-    const testButton = document.createElement("button");
-    testButton.classList.add("testButton")
-    testButton.textContent = "Add"
-
     
-    form.append(nameInput,descriptionArea,dateInput,testButton);
+    form.append(nameInput,descriptionArea,dateInput);
     formContainer.appendChild(form)
     return formContainer;
+}
+
+function todoMenu() {
+    const menu = document.createElement("div");
+    menu.classList.add("todoMenu");
+
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("addTaskButton")
+    addTaskButton.textContent = "Add"
+
+    menu.append(addTaskButton)
+
+    return menu
 }
 
 function navBar() {
