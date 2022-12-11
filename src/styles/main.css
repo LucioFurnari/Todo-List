@@ -60,6 +60,9 @@ body {
 	grid-template-rows:repeat(2,auto);
 	align-items: center;
 }
+
+/*--------------------------------- Nav ---------------------------------*/
+
 nav {
 	display: flex;
 	align-items: center;
@@ -72,6 +75,8 @@ nav .logo {
 	text-align: center;
 }
 
+/*--------------------------------- Todo section ---------------------------------*/
+
 .todo-section {
 	grid-area: main;
 	background-color: white;
@@ -83,8 +88,16 @@ nav .logo {
 	height: 100%;
 	width: 100%;
 }
+
+/*--------------------------------- Task Form ---------------------------------*/
+
 form {
 	display: flex;
 	flex-direction: column;
 	background-color: rgb(157, 157, 157);
+}
+
+
+.todoMenu {
+	grid-area: menu;
 }
