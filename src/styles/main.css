@@ -50,7 +50,7 @@ table {
 /*-----------------------------------------------------------------*/
 
 body {
-	background-color: aquamarine;
+	background-color: antiquewhite;
 }
 #content {
 	display: grid; 
@@ -59,6 +59,8 @@ body {
 	grid-template-columns: auto 1fr;
 	grid-template-rows:repeat(2,auto);
 	align-items: center;
+	position: relative;
+	background-color:aquamarine;
 }
 
 /*--------------------------------- Nav ---------------------------------*/
@@ -74,24 +76,30 @@ nav .logo {
 	/* margin-left: 6rem; */
 	text-align: center;
 }
+nav .inputFilter {
+	grid-column-start: 2;
+}
 
 /*--------------------------------- Todo section ---------------------------------*/
 
 .todo-section {
+	display:flex;
+	flex-direction: column;
+	align-items: flex-start;
+	
 	grid-area: main;
 	background-color: white;
 	height: 100vh;
 }
-.formContainer{
-	display: flex;
-	grid-area: menu;
-	height: 100%;
-	width: 100%;
-}
+
 
 /*--------------------------------- Task Form ---------------------------------*/
+.taskForm{
+	display: none;
+	grid-area: menu;
+}
 
-form {
+.active {
 	display: flex;
 	flex-direction: column;
 	background-color: rgb(157, 157, 157);
@@ -100,4 +108,6 @@ form {
 
 .todoMenu {
 	grid-area: menu;
+	height: 100%;
+	background-color: rgb(150, 175, 240);
 }
