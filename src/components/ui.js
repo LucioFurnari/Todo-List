@@ -105,10 +105,13 @@ function todoSection(){
     return section
 }
 
-export function createTaskUi(elem){
+export function createTaskUi(elem,i){
     const task = document.createElement("div");
     task.classList.add("task");
+    task.setAttribute("id",i);
 
+    const taskInfo = document.createElement("div")
+    taskInfo.classList.add("taskInfo");
     const taskName = document.createElement("p");
     taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
@@ -118,7 +121,63 @@ export function createTaskUi(elem){
     const taskPriority = document.createElement("p");
     taskPriority.textContent = "Priority: " + elem.priority;
 
-    task.append(taskName,taskDate,taskDescription,taskPriority)
+    /*------ Edit Form ------*/
+
+    const taskEdit = document.createElement("form");
+    taskEdit.classList.add("taskEdit");
+
+    const editName = document.createElement("input");
+    const editDate = document.createElement("input");
+    editDate.setAttribute("type","date");
+    const editDescription = document.createElement("textarea")
+    
+    /*------ Edit Form ------*/
+    
+    const priorityField = document.createElement("fieldset");
+    priorityField.classList.add("priorityField")
+    const priorityLegend = document.createElement("legend")
+    const radioInputsContainer = document.createElement("div");
+    priorityLegend.textContent = "Select Priority: "
+
+    const firstRadioLabel = document.createElement("label")
+    firstRadioLabel.textContent = "Low";
+    firstRadioLabel.htmlFor = "low";
+    const lowRadioInput = document.createElement("input")
+    lowRadioInput.setAttribute("type","radio");
+    lowRadioInput.setAttribute("name","priority");
+    lowRadioInput.setAttribute("id","low");
+    lowRadioInput.required = true;
+    lowRadioInput.value = "low"
+
+    const secondRadioLabel = document.createElement("label");
+    secondRadioLabel.textContent = "Medium";
+    secondRadioLabel.htmlFor = "medium";
+    const mediumRadioInput = document.createElement("input");
+    mediumRadioInput.setAttribute("type","radio");
+    mediumRadioInput.setAttribute("name","priority");
+    mediumRadioInput.setAttribute("id","medium");
+    mediumRadioInput.value = "medium";
+
+    const thirdRadioLabel = document.createElement("label");
+    thirdRadioLabel.textContent = "High";
+    thirdRadioLabel.htmlFor = "high";
+    const highRadioInput = document.createElement("input");
+    highRadioInput.setAttribute("type","radio");
+    highRadioInput.setAttribute("name","priority");
+    highRadioInput.setAttribute("id","high");
+    highRadioInput.value = "high";
+
+    radioInputsContainer.append(firstRadioLabel,lowRadioInput,
+                                secondRadioLabel,mediumRadioInput,
+                                thirdRadioLabel,highRadioInput)
+    priorityField.append(priorityLegend,radioInputsContainer)
+
+    taskEdit.append(editName,editDate,editDescription,priorityField)
+    /*------------*/
+
+    taskInfo.append(taskName,taskDate,taskDescription,taskPriority)
+
+    task.append(taskInfo,taskEdit)
 
     return task
 }
