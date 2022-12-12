@@ -1,4 +1,4 @@
-
+import { taskArray } from "./classes";
 export function createUI(){
     const root = document.querySelector("#content");
     root.append(navBar(),todoMenu(),todoSection())
@@ -121,6 +121,16 @@ export function createTaskUi(elem,i){
     const taskPriority = document.createElement("p");
     taskPriority.textContent = "Priority: " + elem.priority;
 
+    const editButton = document.createElement("button");
+    editButton.classList.add("editButton");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click",() => {
+        taskEdit.classList.add("edit-active");
+        taskInfo.classList.add("task-hide")
+    })
+
+    taskInfo.append(taskName,taskDate,taskDescription,taskPriority,editButton);
+
     /*------ Edit Form ------*/
 
     const taskEdit = document.createElement("form");
@@ -130,7 +140,19 @@ export function createTaskUi(elem,i){
     const editDate = document.createElement("input");
     editDate.setAttribute("type","date");
     const editDescription = document.createElement("textarea")
-    
+    const submitEditBtn = document.createElement("button")
+    submitEditBtn.classList.add("submitEditBtn");
+    submitEditBtn.textContent = "Accept"
+    submitEditBtn.addEventListener("click",(e) => {
+        e.preventDefault()
+        taskName.textContent = editName.value;
+        taskDate.textContent = editDate.value;
+        
+        taskEdit.classList.remove("edit-active");
+        taskInfo.classList.remove("task-hide");
+        
+        console.log(taskArray);
+    })
     /*------ Edit Form ------*/
     
     const priorityField = document.createElement("fieldset");
@@ -172,10 +194,8 @@ export function createTaskUi(elem,i){
                                 thirdRadioLabel,highRadioInput)
     priorityField.append(priorityLegend,radioInputsContainer)
 
-    taskEdit.append(editName,editDate,editDescription,priorityField)
+    taskEdit.append(editName,editDate,editDescription,priorityField,submitEditBtn)
     /*------------*/
-
-    taskInfo.append(taskName,taskDate,taskDescription,taskPriority)
 
     task.append(taskInfo,taskEdit)
 
