@@ -21,11 +21,49 @@ function taskForm() {
     dateInput.classList.add("dateInput");
     dateInput.required = true;
 
+    const priorityField = document.createElement("fieldset")
+    const priorityLegend = document.createElement("legend")
+    const radioInputsContainer = document.createElement("div");
+    priorityLegend.textContent = "Select Priority: "
+
+    const firstRadioLabel = document.createElement("label")
+    firstRadioLabel.textContent = "Low";
+    firstRadioLabel.htmlFor = "low";
+    const lowRadioInput = document.createElement("input")
+    lowRadioInput.setAttribute("type","radio");
+    lowRadioInput.setAttribute("name","priority");
+    lowRadioInput.setAttribute("id","low");
+    lowRadioInput.required = true;
+    lowRadioInput.value = "low"
+
+    const secondRadioLabel = document.createElement("label");
+    secondRadioLabel.textContent = "Medium";
+    secondRadioLabel.htmlFor = "medium";
+    const mediumRadioInput = document.createElement("input");
+    mediumRadioInput.setAttribute("type","radio");
+    mediumRadioInput.setAttribute("name","priority");
+    mediumRadioInput.setAttribute("id","medium");
+    mediumRadioInput.value = "medium";
+
+    const thirdRadioLabel = document.createElement("label");
+    thirdRadioLabel.textContent = "High";
+    thirdRadioLabel.htmlFor = "high";
+    const highRadioInput = document.createElement("input");
+    highRadioInput.setAttribute("type","radio");
+    highRadioInput.setAttribute("name","priority");
+    highRadioInput.setAttribute("id","high");
+    highRadioInput.value = "high";
+
+    radioInputsContainer.append(firstRadioLabel,lowRadioInput,
+                                secondRadioLabel,mediumRadioInput,
+                                thirdRadioLabel,highRadioInput)
+    priorityField.append(priorityLegend,radioInputsContainer)
+
     const submitButton = document.createElement("button");
     submitButton.classList.add("submitButton")
     submitButton.textContent = "Add"
     
-    form.append(nameInput,descriptionArea,dateInput,submitButton);
+    form.append(nameInput,descriptionArea,dateInput,priorityField,submitButton);
     formContainer.appendChild(form)
     return formContainer;
 }
@@ -77,8 +115,10 @@ export function createTaskUi(elem){
     taskDate.textContent = "Due Date: " + elem.date
     const taskDescription = document.createElement("p");
     taskDescription.textContent = "Description: " + elem.description;
+    const taskPriority = document.createElement("p");
+    taskPriority.textContent = "Priority: " + elem.priority;
 
-    task.append(taskName,taskDate,taskDescription)
+    task.append(taskName,taskDate,taskDescription,taskPriority)
 
     return task
 }
