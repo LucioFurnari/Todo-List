@@ -91,7 +91,17 @@ nav .inputFilter {
 	background-color: white;
 	height: 100vh;
 }
-
+.tasks-container {
+	display: flex;
+	flex-direction: column;
+}
+.task {
+	display: flex;
+	padding: 1rem;
+}
+.task p {
+	padding: 0.5rem;
+}
 
 /*--------------------------------- Task Form ---------------------------------*/
 .taskForm{
