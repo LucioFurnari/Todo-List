@@ -8,6 +8,22 @@ class Todo {
         this.priority = priority;
         this.favorite = favorite;
     }
+
+    changeName(value) {
+        this.name = value;
+    }
+
+    changeDate(value) {
+        this.date = value;
+    }
+
+    changeDescription(value){
+        this.description = value;
+    }
+
+    changePriority(value){
+        this.priority = value;
+    }
 }
 
 export function createTask(name,date,description,priority,favorite) {
