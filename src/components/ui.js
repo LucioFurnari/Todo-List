@@ -137,22 +137,35 @@ export function createTaskUi(elem,i){
     taskEdit.classList.add("taskEdit");
 
     const editName = document.createElement("input");
+    editName.value = elem.name;
     const editDate = document.createElement("input");
     editDate.setAttribute("type","date");
-    const editDescription = document.createElement("textarea")
+    editDate.required = true;
+    editDate.value = elem.date;
+    const editDescription = document.createElement("textarea");
+    editDescription.value = elem.description;
     const submitEditBtn = document.createElement("button")
     submitEditBtn.classList.add("submitEditBtn");
     submitEditBtn.textContent = "Accept"
     submitEditBtn.addEventListener("click",(e) => {
+        e.stopImmediatePropagation()
         e.preventDefault()
+        const priorityInput = document.querySelector(".taskEdit input[name = priority]:checked")
         taskName.textContent = editName.value;
         taskDate.textContent = editDate.value;
+        taskDescription.textContent = editDescription.value;
+        taskPriority.textContent = priorityInput.value
+
+        elem.changeName(editName.value);
+        elem.changeDate(editDate.value);
+        elem.changeDescription(editDescription.value);
+        elem.changePriority(priorityInput.value);
+        console.log(elem);
         
         taskEdit.classList.remove("edit-active");
         taskInfo.classList.remove("task-hide");
-        
-        console.log(taskArray);
-    })
+    },true)
+
     /*------ Edit Form ------*/
     
     const priorityField = document.createElement("fieldset");
@@ -164,7 +177,8 @@ export function createTaskUi(elem,i){
     const firstRadioLabel = document.createElement("label")
     firstRadioLabel.textContent = "Low";
     firstRadioLabel.htmlFor = "low";
-    const lowRadioInput = document.createElement("input")
+    const lowRadioInput = document.createElement("input");
+    lowRadioInput.checked = true;
     lowRadioInput.setAttribute("type","radio");
     lowRadioInput.setAttribute("name","priority");
     lowRadioInput.setAttribute("id","low");
