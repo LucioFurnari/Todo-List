@@ -91,18 +91,41 @@ nav .inputFilter {
 	background-color: white;
 	height: 100vh;
 }
+
+/*--------------------------------- Tasks ---------------------------------*/
+
 .tasks-container {
 	display: flex;
 	flex-direction: column;
 }
 .task {
 	display: flex;
+	flex-direction: column;
 	padding: 1rem;
 }
 .task p {
 	padding: 0.5rem;
 }
 
+.taskInfo {
+	display: flex;
+	align-items: center;
+}
+.task-hide {
+	display: none;
+}
+.taskEdit{
+	display: none;
+	
+}
+.edit-active {
+	display: flex;
+	align-items: center;
+}
+.priorityField {
+	display: flex;
+	align-items: center;
+}
 /*--------------------------------- Task Form ---------------------------------*/
 .taskForm{
 	display: none;
