@@ -13,20 +13,20 @@ export function addEvents(){
     })
 
     taskForm.addEventListener("submit",(e) => {
+        e.stopImmediatePropagation()
         e.preventDefault();
         const nameInput = document.querySelector(".nameInput");
         const dateInput = document.querySelector(".dateInput");
         const descriptionArea = document.querySelector(".descriptionArea");
-        const priorityInput = document.querySelector(".taskForm input[name = priority]:checked")
+        const prioritySelect = document.querySelector(".prioritySelector")
         
-        console.log(priorityInput.value);
         while(main.firstChild){
             main.removeChild(main.firstChild)
         }
-        createTask(nameInput.value,dateInput.value,descriptionArea.value,priorityInput.value);
-        taskArray.forEach(elem => {
-            main.append(createTaskUi(elem))
+        createTask(nameInput.value,dateInput.value,descriptionArea.value,prioritySelect.value);
+        taskArray.map((elem,i) => {
+            main.append(createTaskUi(elem,i))
         })
         taskForm.classList.remove("active");
-    })
+    },true)
 }
