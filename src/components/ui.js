@@ -90,6 +90,8 @@ export function createTaskUi(elem,i){
 
     const taskInfo = document.createElement("div")
     taskInfo.classList.add("taskInfo");
+    const checkboxInput = document.createElement("input")
+    checkboxInput.type = "checkbox";
     const taskName = document.createElement("p");
     taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
@@ -99,6 +101,11 @@ export function createTaskUi(elem,i){
     const taskPriority = document.createElement("p");
     taskPriority.textContent = "Priority: " + elem.priority;
 
+    checkboxInput.addEventListener("click", (e) => {
+        elem.changeComplete(e.target.checked);
+        console.log(e.target.checked);
+    })
+
     const editButton = document.createElement("button");
     editButton.classList.add("editButton");
     editButton.textContent = "Edit";
@@ -107,7 +114,7 @@ export function createTaskUi(elem,i){
         taskInfo.classList.add("task-hide")
     })
 
-    taskInfo.append(taskName,taskDate,taskDescription,taskPriority,editButton);
+    taskInfo.append(checkboxInput,taskName,taskDate,taskDescription,taskPriority,editButton);
 
 /*------ Edit Form ------*/
 
@@ -149,7 +156,7 @@ export function createTaskUi(elem,i){
         taskDate.textContent = editDate.value;
         taskDescription.textContent = editDescription.value;
         taskPriority.textContent = prioritySelector.value;
-
+        
         elem.changeName(editName.value);
         elem.changeDate(editDate.value);
         elem.changeDescription(editDescription.value);
