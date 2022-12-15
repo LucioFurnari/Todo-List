@@ -1,12 +1,12 @@
 export const taskArray = [];
 
 class Todo {
-    constructor(name,date,description,priority,favorite){
+    constructor(name,date,description,priority,complete){
         this.name = name;
         this.date = date;
         this.description = description;
         this.priority = priority;
-        this.favorite = favorite;
+        this.complete = complete;
     }
 
     changeName(value) {
@@ -24,6 +24,11 @@ class Todo {
     changePriority(value){
         this.priority = value;
     }
+
+    changeComplete(value){
+        this.complete = value;
+    }
+
 }
 
 export function createTask(name,date,description,priority,favorite) {
