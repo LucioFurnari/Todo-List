@@ -1,9 +1,10 @@
-import { taskArray } from "./classes";
+import { createProject } from "./classes";
+import { projectArray } from "./classes";
 export function createUI(){
     const root = document.querySelector("#content");
     root.append(navBar(),todoMenu(),todoSection())
 }
-
+/* <-------- Task Form --------> */
 function taskForm() {
     const formContainer = document.createElement("div");
     formContainer.classList.add("formContainer")
@@ -45,7 +46,7 @@ function taskForm() {
     formContainer.appendChild(form)
     return formContainer;
 }
-
+/* <-------- Menu --------> */
 function todoMenu() {
     const menu = document.createElement("div");
 
@@ -55,11 +56,44 @@ function todoMenu() {
         addProjectForm.classList.add("active")
     })
 
+    const projectButtonsList = document.createElement("ul");
+    projectButtonsList.classList.add("projectButtonsSection");
+
     const addProjectForm = document.createElement("form");
     addProjectForm.classList.add("addProjectForm");
     addProjectForm.addEventListener("submit",(e) => {
-        e.preventDefault()
-        const newProject = document.createElement("button")
+        e.preventDefault();
+        const projectName = projectTitleInput.value;
+        const newProject =  createProject(projectName)
+        projectArray.push(newProject)
+
+        while(projectButtonsList.firstChild){
+            projectButtonsList.removeChild(projectButtonsList.firstChild)
+        }
+
+        projectArray.forEach((elem,i) => {
+            const projectButton = document.createElement("button");
+            projectButton.textContent = elem.name;
+            projectButton.setAttribute("project-data",i);
+            projectButton.addEventListener("click",() => {
+                const mainContainer = document.querySelector(".tasks-container");
+                while(mainContainer.firstChild){
+                    mainContainer.removeChild(mainContainer.firstChild)
+                }
+                elem.tasks.forEach((item,i) => {
+                    const tasks = createTaskUi(item,i);
+                    mainContainer.append(tasks);
+                })
+                
+            })
+
+
+
+            const projectItem = document.createElement("li");
+            projectItem.appendChild(projectButton)
+            projectButtonsList.append(projectItem);
+        })
+        console.log(projectArray);
     })
 
     const projectTitleInput = document.createElement("input")
@@ -70,10 +104,10 @@ function todoMenu() {
 
     
     menu.classList.add("todoMenu");
-    menu.append(addProjectButton,addProjectForm)
+    menu.append(addProjectButton,addProjectForm,projectButtonsList)
     return menu
 }
-
+/* <-------- Nav --------> */
 function navBar() {
     const nav = document.createElement("nav");
     const logo = document.createElement("h2");
@@ -86,7 +120,7 @@ function navBar() {
 
     return nav
 }
-
+/* <-------- Todo section --------> */
 function todoSection(){
     const section = document.createElement("div")
     section.classList.add("todo-section")
@@ -103,7 +137,7 @@ function todoSection(){
     section.append(addTaskSection,tasksContainer)
     return section
 }
-
+/* <-------- Task UI --------> */
 export function createTaskUi(elem,i){
     const task = document.createElement("div");
     task.classList.add("task");
@@ -182,8 +216,6 @@ export function createTaskUi(elem,i){
         elem.changeDate(editDate.value);
         elem.changeDescription(editDescription.value);
         elem.changePriority(prioritySelector.value);
-        console.log(elem);
-        console.log(taskArray);
         
         taskEdit.classList.remove("edit-active");
         taskInfo.classList.remove("task-hide");
