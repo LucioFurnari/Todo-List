@@ -48,8 +48,29 @@ function taskForm() {
 
 function todoMenu() {
     const menu = document.createElement("div");
-    menu.classList.add("todoMenu");
 
+    const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "Add Project" //Cambiar por un icono 
+    addProjectButton.addEventListener("click", () => {
+        addProjectForm.classList.add("active")
+    })
+
+    const addProjectForm = document.createElement("form");
+    addProjectForm.classList.add("addProjectForm");
+    addProjectForm.addEventListener("submit",(e) => {
+        e.preventDefault()
+        const newProject = document.createElement("button")
+    })
+
+    const projectTitleInput = document.createElement("input")
+    const submitProjectButton = document.createElement("button");
+    submitProjectButton.textContent = "Accept"
+    addProjectForm.append(projectTitleInput,submitProjectButton)
+
+
+    
+    menu.classList.add("todoMenu");
+    menu.append(addProjectButton,addProjectForm)
     return menu
 }
 
