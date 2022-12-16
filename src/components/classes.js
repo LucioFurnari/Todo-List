@@ -1,5 +1,5 @@
 export const taskArray = [];
-
+const projectArray = [];
 class Todo {
     constructor(name,date,description,priority,complete){
         this.name = name;
@@ -30,8 +30,32 @@ class Todo {
     }
 
 }
+class Project {
+    constructor(name,tasks){
+        this.name = name;
+        this.tasks = tasks;
+    }
 
-export function createTask(name,date,description,priority,favorite) {
-    const newTask = new Todo(name,date,description,priority,favorite);
-    taskArray.push(newTask);
+    addTask(task) {
+        this.tasks.push(task);
+    }
 }
+export function createTask(name,date,description,priority,complete) {
+    const newTask = new Todo(name,date,description,priority,complete);
+    taskArray.push(newTask);
+    return new Todo(name,date,description,priority,complete);
+}
+
+function createProject(name) {
+    return new Project(name,[]);;
+}
+
+const test = createProject("Test");
+test.addTask({task:"test"})
+test.addTask({task:"test 2"})
+test.addTask(createTask("test 3","2023-12-3","description","low",false))
+
+projectArray.push(test)
+projectArray[0].tasks[2].changeComplete(true)
+projectArray[0].tasks[2].changeName("Another name")
+console.log(projectArray);
