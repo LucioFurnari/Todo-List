@@ -48,23 +48,26 @@ export function createTask(name,date,description,priority,complete) {
 }
 
 export function createProject(name) {
-    return new Project(name,[]);;
+    const newProject = new Project(name,[]);
+    projectArray.push(newProject);
 }
 export function saveSelectedProject(index) {
     projectSelected = index;
-    console.log(projectSelected);
 }
 
 export function createTodo(todo){
     projectArray[projectSelected].addTask(todo)
     console.log(projectArray);
 }
-const test = createProject("Test");
-test.addTask(createTask("test 1","2023-12-3","description","low",false))
-test.addTask(createTask("test 2","2023-12-3","description","low",false))
-test.addTask(createTask("test 3","2023-12-3","description","low",false))
 
-projectArray.push(test)
-projectArray[0].tasks[2].changeComplete(true)
-projectArray[0].tasks[2].changeName("Another name")
-console.log(projectArray);
+export function deleteProject(event){
+    const targetIndex = event.target.parentNode.getAttribute("data-project")
+    // console.log(event.target.parentNode.getAttribute("data-project"));
+    projectArray.forEach((proj,index) => {
+        if(targetIndex == index){
+            console.log(proj);
+            projectArray.splice(index,1);
+        }
+    })
+}
+
