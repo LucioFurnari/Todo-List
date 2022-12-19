@@ -1,5 +1,8 @@
 import { createProject } from "./classes";
 import { projectArray } from "./classes";
+import { saveSelectedProject } from "./classes";
+import { deleteProject } from "./classes";
+
 export function createUI(){
     const root = document.querySelector("#content");
     root.append(navBar(),todoMenu(),todoSection())
@@ -64,36 +67,10 @@ function todoMenu() {
     addProjectForm.addEventListener("submit",(e) => {
         e.preventDefault();
         const projectName = projectTitleInput.value;
-        const newProject =  createProject(projectName)
-        projectArray.push(newProject)
-
-        while(projectButtonsList.firstChild){
-            projectButtonsList.removeChild(projectButtonsList.firstChild)
-        }
-
-        projectArray.forEach((elem,i) => {
-            const projectButton = document.createElement("button");
-            projectButton.textContent = elem.name;
-            projectButton.setAttribute("project-data",i);
-            projectButton.addEventListener("click",() => {
-                const mainContainer = document.querySelector(".tasks-container");
-                while(mainContainer.firstChild){
-                    mainContainer.removeChild(mainContainer.firstChild)
-                }
-                elem.tasks.forEach((item,i) => {
-                    const tasks = createTaskUi(item,i);
-                    mainContainer.append(tasks);
-                })
-                
-            })
-
-
-
-            const projectItem = document.createElement("li");
-            projectItem.appendChild(projectButton)
-            projectButtonsList.append(projectItem);
-        })
-        console.log(projectArray);
+        createProject(projectName);
+        createProjectButton(projectArray,projectButtonsList);
+        const menuButtons = document.querySelectorAll(".project-button");
+        console.log(menuButtons);
     })
 
     const projectTitleInput = document.createElement("input")
@@ -101,11 +78,47 @@ function todoMenu() {
     submitProjectButton.textContent = "Accept"
     addProjectForm.append(projectTitleInput,submitProjectButton)
 
-
-    
     menu.classList.add("todoMenu");
     menu.append(addProjectButton,addProjectForm,projectButtonsList)
     return menu
+};
+
+function createProjectButton(array,parent){
+    while(parent.firstChild){
+        parent.removeChild(parent.firstChild)
+    }
+    array.forEach((elem,index) => {
+        const projectButton = document.createElement("button");
+        projectButton.textContent = elem.name;
+        projectButton.classList.add("project-button")
+
+
+        projectButton.addEventListener("click",() => {
+            saveSelectedProject(index)
+            const mainContainer = document.querySelector(".tasks-container");
+            while(mainContainer.firstChild){
+                mainContainer.removeChild(mainContainer.firstChild)
+            }
+            elem.tasks.forEach((item,i) => {
+                const tasks = createTaskUi(item,i);
+                mainContainer.append(tasks);
+            })
+            
+        })
+
+        const deleteProjectButton = document.createElement("button");
+        deleteProjectButton.textContent = "X"; //Cambiar por un icono
+        deleteProjectButton.addEventListener("click",(event) => {
+            deleteProject(event);
+            createProjectButton(array,parent)
+            console.log(array);
+        })
+
+        const projectItem = document.createElement("li");
+        projectItem.dataset.project = index;
+        projectItem.append(projectButton,deleteProjectButton)
+        parent.append(projectItem);
+    })
 }
 /* <-------- Nav --------> */
 function navBar() {
