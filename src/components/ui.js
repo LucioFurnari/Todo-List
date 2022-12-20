@@ -4,6 +4,8 @@ import { saveSelectedProject } from "./classes";
 import { deleteProject } from "./classes";
 import { deleteTask } from "./classes";
 import { projectSelected } from "./classes";
+import { createTask } from "./classes";
+import { createTodo } from "./classes";
 
 export function createUI(){
     const root = document.querySelector("#content");
@@ -32,7 +34,23 @@ function taskForm() {
     const formContainer = document.createElement("div");
     formContainer.classList.add("formContainer")
     const form = document.createElement("form");
-    form.classList.add("taskForm")
+    form.classList.add("taskForm");
+
+    form.addEventListener("submit",(e) => {
+        const main = document.querySelector(".tasks-container");
+        e.stopImmediatePropagation()
+        e.preventDefault();
+        while(main.firstChild){
+            main.removeChild(main.firstChild)
+        }
+        if(projectArray[projectSelected] != undefined){
+            createTodo(createTask(nameInput.value,dateInput.value,descriptionArea.value,prioritySelector.value));
+            projectArray[projectSelected].tasks.map((elem,i) => {
+                main.append(createTaskUi(elem,i))
+            })
+            form.classList.remove("active");
+        };
+    },true)
 
     const nameInput = document.createElement("input");
     nameInput.setAttribute("type","text");
@@ -93,7 +111,6 @@ export function createTaskUi(elem,i){
 
     checkboxInput.addEventListener("click", (e) => {
         elem.changeComplete(e.target.checked);
-        console.log(e.target.checked);
     })
 
     const editButton = document.createElement("button");
@@ -108,12 +125,11 @@ export function createTaskUi(elem,i){
     deleteButton.addEventListener("click",() => {
         const mainContainer = document.querySelector(".tasks-container");
         deleteTask(i);
-        resetTaskContainer(mainContainer,projectSelected,projectArray)
-        console.log(projectArray);
+        resetUiContainer(mainContainer,projectSelected,projectArray);
     });
     taskInfo.append(checkboxInput,taskName,taskDate,taskDescription,taskPriority,editButton,deleteButton);
 
-/*------ Edit Form ------*/
+    /*------ Edit Form ------*/
 
     const taskEdit = document.createElement("form");
     taskEdit.classList.add("taskEdit");
@@ -142,10 +158,10 @@ export function createTaskUi(elem,i){
 
     prioritySelector.append(optionPriorityLow,optionPriorityMedium,optionPriorityHigh);
 
-    const submitEditBtn = document.createElement("button")
+    const submitEditBtn = document.createElement("button");
     submitEditBtn.classList.add("submitEditBtn");
     submitEditBtn.textContent = "Accept"
-    submitEditBtn.addEventListener("click",(e) => {
+    submitEditBtn.addEventListener("click",(e) => {         /* Confirma los valores a cambiar */
         e.stopImmediatePropagation()
         e.preventDefault()
     
@@ -170,7 +186,7 @@ export function createTaskUi(elem,i){
     return task
 }
 
-function resetTaskContainer(parent,selected,array) {
+function resetUiContainer(parent,selected,array) {
     while(parent.firstChild){                 
         parent.removeChild(parent.firstChild)
     }
@@ -235,18 +251,21 @@ function createProjectButton(array,parent){
             
         })
 
-        const deleteProjectButton = document.createElement("button");
+        const projectItem = document.createElement("li");
+        projectItem.dataset.project = index;
+        projectItem.append(projectButton,createDeleteProjectButton(array,parent))
+        parent.append(projectItem);
+    })
+}
+
+function createDeleteProjectButton(array,parent) {
+    const deleteProjectButton = document.createElement("button");
         deleteProjectButton.textContent = "X"; //Cambiar por un icono
         deleteProjectButton.addEventListener("click",(event) => {
             deleteProject(event);
             createProjectButton(array,parent)
         })
-
-        const projectItem = document.createElement("li");
-        projectItem.dataset.project = index;
-        projectItem.append(projectButton,deleteProjectButton)
-        parent.append(projectItem);
-    })
+    return deleteProjectButton;
 }
 /*<-------------------------------- Nav ---------------------------------> */
 function navBar() {
