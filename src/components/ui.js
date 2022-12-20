@@ -2,6 +2,8 @@ import { createProject } from "./classes";
 import { projectArray } from "./classes";
 import { saveSelectedProject } from "./classes";
 import { deleteProject } from "./classes";
+import { deleteTask } from "./classes";
+import { projectSelected } from "./classes";
 
 export function createUI(){
     const root = document.querySelector("#content");
@@ -69,8 +71,6 @@ function todoMenu() {
         const projectName = projectTitleInput.value;
         createProject(projectName);
         createProjectButton(projectArray,projectButtonsList);
-        const menuButtons = document.querySelectorAll(".project-button");
-        console.log(menuButtons);
     })
 
     const projectTitleInput = document.createElement("input")
@@ -111,7 +111,6 @@ function createProjectButton(array,parent){
         deleteProjectButton.addEventListener("click",(event) => {
             deleteProject(event);
             createProjectButton(array,parent)
-            console.log(array);
         })
 
         const projectItem = document.createElement("li");
@@ -152,6 +151,7 @@ function todoSection(){
 }
 /* <-------- Task UI --------> */
 export function createTaskUi(elem,i){
+    
     const task = document.createElement("div");
     task.classList.add("task");
     task.setAttribute("id",i);
@@ -181,8 +181,15 @@ export function createTaskUi(elem,i){
         taskEdit.classList.add("edit-active");
         taskInfo.classList.add("task-hide")
     })
-
-    taskInfo.append(checkboxInput,taskName,taskDate,taskDescription,taskPriority,editButton);
+    const deleteButton = document.createElement("button"); // Button for delete Task
+    deleteButton.textContent = "DELETE"
+    deleteButton.addEventListener("click",() => {
+        const mainContainer = document.querySelector(".tasks-container");
+        deleteTask(i);
+        resetTaskContainer(mainContainer,projectSelected,projectArray)
+        console.log(projectArray);
+    });
+    taskInfo.append(checkboxInput,taskName,taskDate,taskDescription,taskPriority,editButton,deleteButton);
 
 /*------ Edit Form ------*/
 
@@ -239,4 +246,15 @@ export function createTaskUi(elem,i){
 
     task.append(taskInfo,taskEdit);
     return task
+}
+
+function resetTaskContainer(parent,selected,array) {
+    while(parent.firstChild){                 
+        parent.removeChild(parent.firstChild)
+    }
+    array[selected].tasks.forEach((item,i) => {
+        const tasks = createTaskUi(item,i);
+        parent.append(tasks);
+    })
+    
 }
