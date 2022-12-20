@@ -9,6 +9,24 @@ export function createUI(){
     const root = document.querySelector("#content");
     root.append(navBar(),todoMenu(),todoSection())
 }
+/* <-------------------------------- Todo section ---------------------------------> */
+function todoSection(){
+    const section = document.createElement("div")
+    section.classList.add("todo-section")
+
+    const addTaskSection = document.createElement("div");
+    const tasksContainer = document.createElement("div");
+    tasksContainer.classList.add("tasks-container")
+
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("addTaskButton")
+    addTaskButton.textContent = "Add Task"
+
+    addTaskSection.append(addTaskButton,taskForm())
+    section.append(addTaskSection,tasksContainer)
+    return section
+}
+
 /* <-------- Task Form --------> */
 function taskForm() {
     const formContainer = document.createElement("div");
@@ -51,105 +69,9 @@ function taskForm() {
     formContainer.appendChild(form)
     return formContainer;
 }
-/* <-------- Menu --------> */
-function todoMenu() {
-    const menu = document.createElement("div");
 
-    const addProjectButton = document.createElement("button");
-    addProjectButton.textContent = "Add Project" //Cambiar por un icono 
-    addProjectButton.addEventListener("click", () => {
-        addProjectForm.classList.add("active")
-    })
+/* <---------------- Task UI ----------------> */
 
-    const projectButtonsList = document.createElement("ul");
-    projectButtonsList.classList.add("projectButtonsSection");
-
-    const addProjectForm = document.createElement("form");
-    addProjectForm.classList.add("addProjectForm");
-    addProjectForm.addEventListener("submit",(e) => {
-        e.preventDefault();
-        const projectName = projectTitleInput.value;
-        createProject(projectName);
-        createProjectButton(projectArray,projectButtonsList);
-    })
-
-    const projectTitleInput = document.createElement("input")
-    const submitProjectButton = document.createElement("button");
-    submitProjectButton.textContent = "Accept"
-    addProjectForm.append(projectTitleInput,submitProjectButton)
-
-    menu.classList.add("todoMenu");
-    menu.append(addProjectButton,addProjectForm,projectButtonsList)
-    return menu
-};
-
-function createProjectButton(array,parent){
-    while(parent.firstChild){
-        parent.removeChild(parent.firstChild)
-    }
-    array.forEach((elem,index) => {
-        const projectButton = document.createElement("button");
-        projectButton.textContent = elem.name;
-        projectButton.classList.add("project-button")
-
-
-        projectButton.addEventListener("click",() => {
-            saveSelectedProject(index)
-            const mainContainer = document.querySelector(".tasks-container");
-            while(mainContainer.firstChild){
-                mainContainer.removeChild(mainContainer.firstChild)
-            }
-            elem.tasks.forEach((item,i) => {
-                const tasks = createTaskUi(item,i);
-                mainContainer.append(tasks);
-            })
-            
-        })
-
-        const deleteProjectButton = document.createElement("button");
-        deleteProjectButton.textContent = "X"; //Cambiar por un icono
-        deleteProjectButton.addEventListener("click",(event) => {
-            deleteProject(event);
-            createProjectButton(array,parent)
-        })
-
-        const projectItem = document.createElement("li");
-        projectItem.dataset.project = index;
-        projectItem.append(projectButton,deleteProjectButton)
-        parent.append(projectItem);
-    })
-}
-/* <-------- Nav --------> */
-function navBar() {
-    const nav = document.createElement("nav");
-    const logo = document.createElement("h2");
-    logo.textContent = "Logo";
-    logo.classList.add("logo")
-    const inputFilter = document.createElement("input")
-    inputFilter.classList.add("inputFilter");
-
-    nav.append(logo,inputFilter);
-
-    return nav
-}
-/* <-------- Todo section --------> */
-function todoSection(){
-    const section = document.createElement("div")
-    section.classList.add("todo-section")
-
-    const addTaskSection = document.createElement("div");
-    const tasksContainer = document.createElement("div");
-    tasksContainer.classList.add("tasks-container")
-
-    const addTaskButton = document.createElement("button");
-    addTaskButton.classList.add("addTaskButton")
-    addTaskButton.textContent = "Add Task"
-
-    addTaskSection.append(addTaskButton,taskForm())
-    section.append(addTaskSection,tasksContainer)
-    return section
-}
-/* <-------- Task UI --------> */
 export function createTaskUi(elem,i){
     
     const task = document.createElement("div");
@@ -257,4 +179,85 @@ function resetTaskContainer(parent,selected,array) {
         parent.append(tasks);
     })
     
+}
+/* <-------- Menu --------> */
+function todoMenu() {
+    const menu = document.createElement("div");
+
+    const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "Add Project" //Cambiar por un icono 
+    addProjectButton.addEventListener("click", () => {
+        addProjectForm.classList.add("active")
+    })
+
+    const projectButtonsList = document.createElement("ul");
+    projectButtonsList.classList.add("projectButtonsSection");
+
+    const addProjectForm = document.createElement("form");
+    addProjectForm.classList.add("addProjectForm");
+    addProjectForm.addEventListener("submit",(e) => {
+        e.preventDefault();
+        const projectName = projectTitleInput.value;
+        createProject(projectName);
+        createProjectButton(projectArray,projectButtonsList);
+    })
+
+    const projectTitleInput = document.createElement("input")
+    const submitProjectButton = document.createElement("button");
+    submitProjectButton.textContent = "Accept"
+    addProjectForm.append(projectTitleInput,submitProjectButton)
+
+    menu.classList.add("todoMenu");
+    menu.append(addProjectButton,addProjectForm,projectButtonsList)
+    return menu
+};
+
+function createProjectButton(array,parent){
+    while(parent.firstChild){
+        parent.removeChild(parent.firstChild)
+    }
+    array.forEach((elem,index) => {
+        const projectButton = document.createElement("button");
+        projectButton.textContent = elem.name;
+        projectButton.classList.add("project-button")
+
+
+        projectButton.addEventListener("click",() => {
+            saveSelectedProject(index)
+            const mainContainer = document.querySelector(".tasks-container");
+            while(mainContainer.firstChild){
+                mainContainer.removeChild(mainContainer.firstChild)
+            }
+            elem.tasks.forEach((item,i) => {
+                const tasks = createTaskUi(item,i);
+                mainContainer.append(tasks);
+            })
+            
+        })
+
+        const deleteProjectButton = document.createElement("button");
+        deleteProjectButton.textContent = "X"; //Cambiar por un icono
+        deleteProjectButton.addEventListener("click",(event) => {
+            deleteProject(event);
+            createProjectButton(array,parent)
+        })
+
+        const projectItem = document.createElement("li");
+        projectItem.dataset.project = index;
+        projectItem.append(projectButton,deleteProjectButton)
+        parent.append(projectItem);
+    })
+}
+/*<-------------------------------- Nav ---------------------------------> */
+function navBar() {
+    const nav = document.createElement("nav");
+    const logo = document.createElement("h2");
+    logo.textContent = "Logo";
+    logo.classList.add("logo")
+    const inputFilter = document.createElement("input")
+    inputFilter.classList.add("inputFilter");
+
+    nav.append(logo,inputFilter);
+
+    return nav
 }
