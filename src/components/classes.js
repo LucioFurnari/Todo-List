@@ -40,6 +40,9 @@ class Project {
     addTask(task) {
         this.tasks.push(task);
     }
+    removeTask(index) {
+        this.tasks.splice(index,1)
+    }
 }
 export function createTask(name,date,description,priority,complete) {
     // const newTask = new Todo(name,date,description,priority,complete);
@@ -62,12 +65,13 @@ export function createTodo(todo){
 
 export function deleteProject(event){
     const targetIndex = event.target.parentNode.getAttribute("data-project")
-    // console.log(event.target.parentNode.getAttribute("data-project"));
     projectArray.forEach((proj,index) => {
         if(targetIndex == index){
-            console.log(proj);
             projectArray.splice(index,1);
         }
     })
 }
 
+export function deleteTask(index) {
+    projectArray[projectSelected].removeTask(index)
+}   
