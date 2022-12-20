@@ -1,4 +1,4 @@
-export const taskArray = [];
+
 export const projectArray = [];
 export let projectSelected = 0;
 class Todo {
@@ -44,9 +44,13 @@ class Project {
         this.tasks.splice(index,1)
     }
 }
+export function saveSelectedProject(index) {
+    projectSelected = index;
+}
+
+/*<-------------- Create functions --------------> */
+
 export function createTask(name,date,description,priority,complete) {
-    // const newTask = new Todo(name,date,description,priority,complete);
-    // taskArray.push(newTask);
     return new Todo(name,date,description,priority,complete);
 }
 
@@ -54,14 +58,13 @@ export function createProject(name) {
     const newProject = new Project(name,[]);
     projectArray.push(newProject);
 }
-export function saveSelectedProject(index) {
-    projectSelected = index;
-}
 
 export function createTodo(todo){
     projectArray[projectSelected].addTask(todo)
     console.log(projectArray);
 }
+
+/*<-------------- Delete functions --------------> */
 
 export function deleteProject(event){
     const targetIndex = event.target.parentNode.getAttribute("data-project")
