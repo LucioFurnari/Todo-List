@@ -61,7 +61,6 @@ export function createProject(name) {
 
 export function createTodo(todo){
     projectArray[projectSelected].addTask(todo)
-    console.log(projectArray);
 }
 
 /*<-------------- Delete functions --------------> */
@@ -78,3 +77,8 @@ export function deleteProject(event){
 export function deleteTask(index) {
     projectArray[projectSelected].removeTask(index)
 }   
+
+/*<-------------- Initial project with tasks --------------> */
+
+createProject("Test");
+createTodo(createTask("Test","2022-12-07","fafa","low",false))
