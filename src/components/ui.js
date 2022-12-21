@@ -23,6 +23,10 @@ function todoSection(){
     const addTaskButton = document.createElement("button");
     addTaskButton.classList.add("addTaskButton")
     addTaskButton.textContent = "Add Task"
+    addTaskButton.addEventListener("click",() => {
+        const taskForm = document.querySelector(".taskForm");
+        taskForm.classList.toggle("active")
+    });
 
     addTaskSection.append(addTaskButton,taskForm())
     section.append(addTaskSection,tasksContainer)
@@ -95,11 +99,18 @@ export function createTaskUi(elem,i){
     const task = document.createElement("div");
     task.classList.add("task");
     task.setAttribute("id",i);
+    task.setAttribute("priority",elem.priority);
+
 
     const taskInfo = document.createElement("div")
     taskInfo.classList.add("taskInfo");
+    taskInfo.addEventListener("click",() => taskContent.classList.toggle("taskContent-active"));
+    
+    const taskContent = document.createElement("div");
+    taskContent.classList.add("taskContent")
     const checkboxInput = document.createElement("input")
     checkboxInput.type = "checkbox";
+    checkboxInput.checked = elem.complete;
     const taskName = document.createElement("p");
     taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
@@ -127,7 +138,8 @@ export function createTaskUi(elem,i){
         deleteTask(i);
         resetUiContainer(mainContainer,projectSelected,projectArray);
     });
-    taskInfo.append(checkboxInput,taskName,taskDate,taskDescription,taskPriority,editButton,deleteButton);
+    taskContent.append(taskDate,taskDescription,)
+    taskInfo.append(checkboxInput,taskName,taskPriority,editButton,deleteButton);
 
     /*------ Edit Form ------*/
 
@@ -164,11 +176,12 @@ export function createTaskUi(elem,i){
     submitEditBtn.addEventListener("click",(e) => {         /* Confirma los valores a cambiar */
         e.stopImmediatePropagation()
         e.preventDefault()
-    
-        taskName.textContent = editName.value;
-        taskDate.textContent = editDate.value;
-        taskDescription.textContent = editDescription.value;
-        taskPriority.textContent = prioritySelector.value;
+
+        task.setAttribute("priority",prioritySelector.value)
+        taskName.textContent = "Name: " + editName.value;
+        taskDate.textContent = "Due Date: " + editDate.value;
+        taskDescription.textContent = "Description: " + editDescription.value;
+        taskPriority.textContent = "Priority: " + prioritySelector.value;
         
         elem.changeName(editName.value);
         elem.changeDate(editDate.value);
@@ -182,7 +195,7 @@ export function createTaskUi(elem,i){
     taskEdit.append(editName,editDate,editDescription,prioritySelector,submitEditBtn)
     /*------ Edit Form ------*/
 
-    task.append(taskInfo,taskEdit);
+    task.append(taskInfo,taskContent,taskEdit);
     return task
 }
 
@@ -208,6 +221,8 @@ function todoMenu() {
 
     const projectButtonsList = document.createElement("ul");
     projectButtonsList.classList.add("projectButtonsSection");
+
+    createProjectButton(projectArray,projectButtonsList);
 
     const addProjectForm = document.createElement("form");
     addProjectForm.classList.add("addProjectForm");
