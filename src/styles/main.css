@@ -102,6 +102,20 @@ nav .inputFilter {
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
+	border-radius: 0.5rem;
+	min-width: 600px;
+}
+.task[priority="low"]{
+	background: linear-gradient(90deg, rgb(0, 195, 0) 1%, rgba(25,25,25,0) 3%);
+}
+.task[priority="medium"] {
+	background: linear-gradient(90deg, rgb(213, 206, 0) 1%, rgba(25,25,25,0) 3%);
+}
+.task[priority="high"] {
+	background: linear-gradient(90deg, rgb(195, 0, 0) 1%, rgba(25,25,25,0) 3%);
+}
+.task input:checked ~ p {
+	text-decoration: line-through;
 }
 .task p {
 	padding: 0.5rem;
@@ -110,6 +124,14 @@ nav .inputFilter {
 .taskInfo {
 	display: flex;
 	align-items: center;
+	border: 1px solid black;
+}
+.taskContent {
+	display: none;
+	overflow: hidden;
+}
+.taskContent-active{
+	display: block;
 }
 .task-hide {
 	display: none;
@@ -131,10 +153,13 @@ nav .inputFilter {
 	display: none;
 	grid-area: menu;
 }
-
+.addProjectForm {
+	display: none;
+}
 .active {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	background-color: rgb(157, 157, 157);
 }
 
