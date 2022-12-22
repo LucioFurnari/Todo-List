@@ -102,16 +102,15 @@ nav .inputFilter {
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-	border-radius: 0.5rem;
 	min-width: 600px;
 }
-.task[priority="low"]{
+.task[priority="low"] .taskInfo{
 	background: linear-gradient(90deg, rgb(0, 195, 0) 1%, rgba(25,25,25,0) 3%);
 }
-.task[priority="medium"] {
+.task[priority="medium"] .taskInfo{
 	background: linear-gradient(90deg, rgb(213, 206, 0) 1%, rgba(25,25,25,0) 3%);
 }
-.task[priority="high"] {
+.task[priority="high"] .taskInfo{
 	background: linear-gradient(90deg, rgb(195, 0, 0) 1%, rgba(25,25,25,0) 3%);
 }
 .task input:checked ~ p {
@@ -125,13 +124,22 @@ nav .inputFilter {
 	display: flex;
 	align-items: center;
 	border: 1px solid black;
+	border-radius: 0.5rem;
+	padding: 1rem;
 }
 .taskContent {
-	display: none;
+	
 	overflow: hidden;
+	background-color: rgb(203, 203, 203);
+	max-height: 0;
+	transition: max-height 0.3s ease-out;
 }
 .taskContent-active{
 	display: block;
+	max-height: 100px;
+}
+.taskContent-hide {
+	display: none;
 }
 .task-hide {
 	display: none;
