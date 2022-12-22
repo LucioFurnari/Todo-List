@@ -105,7 +105,7 @@ export function createTaskUi(elem,i){
     const taskInfo = document.createElement("div")
     taskInfo.classList.add("taskInfo");
     taskInfo.addEventListener("click",() => taskContent.classList.toggle("taskContent-active"));
-    
+
     const taskContent = document.createElement("div");
     taskContent.classList.add("taskContent")
     const checkboxInput = document.createElement("input")
@@ -120,14 +120,17 @@ export function createTaskUi(elem,i){
     const taskPriority = document.createElement("p");
     taskPriority.textContent = "Priority: " + elem.priority;
 
-    checkboxInput.addEventListener("click", (e) => {
-        elem.changeComplete(e.target.checked);
+    checkboxInput.addEventListener("click", (event) => {
+        event.stopImmediatePropagation()
+        elem.changeComplete(event.target.checked);
     })
 
     const editButton = document.createElement("button");
     editButton.classList.add("editButton");
     editButton.textContent = "Edit";
-    editButton.addEventListener("click",() => {
+    editButton.addEventListener("click",(event) => {
+        event.stopImmediatePropagation()
+        taskContent.classList.remove("taskContent-active");
         taskEdit.classList.add("edit-active");
         taskInfo.classList.add("task-hide")
     })
