@@ -6,6 +6,7 @@ import { deleteTask } from "./classes";
 import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
+import { setLocalStorage } from "./classes";
 
 export function createUI(){
     const root = document.querySelector("#content");
@@ -54,6 +55,7 @@ function taskForm() {
             })
             form.classList.remove("active");
         };
+        setLocalStorage();
     },true)
 
     const nameInput = document.createElement("input");
@@ -123,6 +125,7 @@ export function createTaskUi(elem,i){
     checkboxInput.addEventListener("click", (event) => {
         event.stopImmediatePropagation()
         elem.changeComplete(event.target.checked);
+        setLocalStorage();
     })
 
     const editButton = document.createElement("button");
@@ -140,6 +143,7 @@ export function createTaskUi(elem,i){
         const mainContainer = document.querySelector(".tasks-container");
         deleteTask(i);
         resetUiContainer(mainContainer,projectSelected,projectArray);
+        setLocalStorage();
     });
     taskContent.append(taskDate,taskDescription,)
     taskInfo.append(checkboxInput,taskName,taskPriority,editButton,deleteButton);
@@ -193,6 +197,7 @@ export function createTaskUi(elem,i){
         
         taskEdit.classList.remove("edit-active");
         taskInfo.classList.remove("task-hide");
+        setLocalStorage();
     },true)
 
     taskEdit.append(editName,editDate,editDescription,prioritySelector,submitEditBtn)
@@ -234,6 +239,7 @@ function todoMenu() {
         const projectName = projectTitleInput.value;
         createProject(projectName);
         createProjectButton(projectArray,projectButtonsList);
+        setLocalStorage();
     })
 
     const projectTitleInput = document.createElement("input")
@@ -271,17 +277,18 @@ function createProjectButton(array,parent){
 
         const projectItem = document.createElement("li");
         projectItem.dataset.project = index;
-        projectItem.append(projectButton,createDeleteProjectButton(array,parent))
+        projectItem.append(projectButton,deleteProjectButton(array,parent))
         parent.append(projectItem);
     })
 }
 
-function createDeleteProjectButton(array,parent) {
+function deleteProjectButton(array,parent) {
     const deleteProjectButton = document.createElement("button");
         deleteProjectButton.textContent = "X"; //Cambiar por un icono
         deleteProjectButton.addEventListener("click",(event) => {
             deleteProject(event);
-            createProjectButton(array,parent)
+            createProjectButton(array,parent);
+            setLocalStorage();
         })
     return deleteProjectButton;
 }
