@@ -82,3 +82,29 @@ export function deleteTask(index) {
 
 createProject("Test");
 createTodo(createTask("Test","2022-12-07","fafa","low",false))
+
+
+/*<-------------- localStorage --------------> */
+
+function setLocalStorage() {
+    let newArray = projectArray;
+    createProject("Test 2");
+    projectSelected = 1;
+    createTodo(createTask("Test 2","2022-12-07","fafa","low",false));
+
+    window.localStorage.setItem("projects",JSON.stringify(newArray))
+};
+function getLocalStorage() {
+    let getArray = JSON.parse(window.localStorage.getItem("projects"));
+    getArray.forEach((project,index) => {
+        createProject(project.name);
+        projectSelected = index;
+        project.tasks.forEach(task  => {
+            createTodo(createTask(task.name,task.date,task.description,task.priority,task.complete));
+        })
+    })
+    console.log(getArray);
+    console.log(projectArray);
+}
+setLocalStorage();
+getLocalStorage() 
