@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@200;300;400;500;600;700&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -51,6 +52,7 @@ table {
 
 body {
 	background-color: antiquewhite;
+	font-family: 'Anek Devanagari', sans-serif;
 }
 #content {
 	display: grid; 
@@ -70,10 +72,17 @@ nav {
 	align-items: center;
 	grid-area: nav;
 }
-nav .logo {
+.nav-title{
+	font-size: 2rem;
+	font-weight: 600;
 	padding: 1rem ;
 	text-align: center;
-	margin: 0 4rem;
+	margin: 0 1rem;
+}
+nav .logo {
+	width: 4rem;
+	padding: 0.5rem;
+	margin-left: 0.5rem;
 }
 nav .inputFilter {
 	width: 40%;
