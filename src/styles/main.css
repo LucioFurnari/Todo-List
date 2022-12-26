@@ -186,4 +186,41 @@ nav .inputFilter {
 	height: 100%;
 	width: 200px;
 	background-color: rgb(150, 175, 240);
+	padding:0 0.5rem;
 }
+.addProject {
+	width: 4rem;
+	border-bottom: 1px solid transparent;
+	transition: border-bottom 0.3s;
+}
+.addProject:hover {
+	border-bottom: 1px solid black;
+}
+.todoMenu li {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid black;
+	padding: 0.5rem;
+}
+
+.todoMenu .project-button {
+	margin-right: 1rem;
+	text-decoration: underline 1px transparent;
+	transition: text-decoration 0.3s;
+}
+.todoMenu .project-button:hover {
+	text-decoration: underline 1px black;
+
+}
+.todoMenu button {
+	padding: 0.5rem 1rem;
+	font-size: 1.2rem;
+	border: none;
+	background: transparent;
+	text-decoration: underline 1px transparent;
+	transition: text-decoration 0.3s;
+}
+.todoMenu button:hover {
+	text-decoration: underline 1px black;
+}
+
