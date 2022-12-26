@@ -100,6 +100,12 @@ nav .inputFilter {
 	background-color: white;
 	height: 100vh;
 }
+.addTaskButton {
+	width: 3rem;
+}
+.addTaskButton:hover {
+	background-color: rgb(95, 150, 246);
+}
 
 /*--------------------------------- Tasks ---------------------------------*/
 
@@ -173,11 +179,16 @@ nav .inputFilter {
 .addProjectForm {
 	display: none;
 }
+.addProjectForm button {
+	font-size: 1rem;
+}
+.addProjectForm input {
+	padding: 0.5rem;
+	border: none;
+}
 .active {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	background-color: rgb(157, 157, 157);
 }
 
 /*--------------------------------- Menu ---------------------------------*/
@@ -188,6 +199,7 @@ nav .inputFilter {
 	background-color: rgb(150, 175, 240);
 	padding:0 0.5rem;
 }
+
 .addProject {
 	width: 4rem;
 	border-bottom: 1px solid transparent;
