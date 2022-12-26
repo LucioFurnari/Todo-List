@@ -21,9 +21,9 @@ function todoSection(){
     const tasksContainer = document.createElement("div");
     tasksContainer.classList.add("tasks-container")
 
-    const addTaskButton = document.createElement("button");
+    const addTaskButton = document.createElement("img");
     addTaskButton.classList.add("addTaskButton")
-    addTaskButton.textContent = "Add Task"
+    addTaskButton.src = "../src/images/plus.svg"
     addTaskButton.addEventListener("click",() => {
         const taskForm = document.querySelector(".taskForm");
         taskForm.classList.toggle("active")
@@ -48,7 +48,7 @@ function taskForm() {
         while(main.firstChild){
             main.removeChild(main.firstChild)
         }
-        if(projectArray[projectSelected] != undefined){
+        if(projectArray[projectSelected]){
             createTodo(createTask(nameInput.value,dateInput.value,descriptionArea.value,prioritySelector.value));
             projectArray[projectSelected].tasks.map((elem,i) => {
                 main.append(createTaskUi(elem,i))
@@ -221,8 +221,9 @@ function resetUiContainer(parent,selected,array) {
 function todoMenu() {
     const menu = document.createElement("div");
 
-    const addProjectButton = document.createElement("button");
-    addProjectButton.textContent = "Add Project" //Cambiar por un icono 
+    const addProjectButton = document.createElement("img");
+    addProjectButton.src = "../src/images/plus-thick.svg";
+    addProjectButton.classList.add("addProject")
     addProjectButton.addEventListener("click", () => {
         addProjectForm.classList.add("active")
     })
@@ -244,7 +245,7 @@ function todoMenu() {
 
     const projectTitleInput = document.createElement("input")
     const submitProjectButton = document.createElement("button");
-    submitProjectButton.textContent = "Accept"
+    submitProjectButton.textContent = "+"
     addProjectForm.append(projectTitleInput,submitProjectButton)
 
     menu.classList.add("todoMenu");
@@ -295,13 +296,16 @@ function deleteProjectButton(array,parent) {
 /*<-------------------------------- Nav ---------------------------------> */
 function navBar() {
     const nav = document.createElement("nav");
-    const logo = document.createElement("h2");
-    logo.textContent = "Logo";
-    logo.classList.add("logo")
+    const title = document.createElement("h1");
+    title.textContent = "Todo List";
+    title.classList.add("nav-title");
+    const logo = document.createElement("img");
+    logo.classList.add("logo");
+    logo.src = "../src/images/calendar-check.svg"
     const inputFilter = document.createElement("input")
     inputFilter.classList.add("inputFilter");
 
-    nav.append(logo,inputFilter);
+    nav.append(logo,title,inputFilter);
 
     return nav
 }
