@@ -145,8 +145,12 @@ export function createTaskUi(elem,i){
         resetUiContainer(mainContainer,projectSelected,projectArray);
         setLocalStorage();
     });
-    taskContent.append(taskDate,taskDescription,)
-    taskInfo.append(checkboxInput,taskName,taskPriority,editButton,deleteButton);
+    const buttonContainer = document.createElement("div");
+    const nameContainer = document.createElement("div");
+    nameContainer.append(checkboxInput,taskName)
+    buttonContainer.append(editButton,deleteButton);
+    taskContent.append(taskPriority,taskDescription,buttonContainer)
+    taskInfo.append(nameContainer,taskDate);
 
     /*------ Edit Form ------*/
 
