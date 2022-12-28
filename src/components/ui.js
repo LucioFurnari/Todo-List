@@ -225,12 +225,14 @@ function resetUiContainer(parent,selected,array) {
 function todoMenu() {
     const menu = document.createElement("div");
 
-    const addProjectButton = document.createElement("img");
-    addProjectButton.src = "../src/images/plus-thick.svg";
-    addProjectButton.classList.add("addProject")
+    const addProjectButton = document.createElement("button");
+    const buttonImage = document.createElement("img");
+    buttonImage.src = "../src/images/plus.svg";
+    addProjectButton.append(buttonImage);
+    addProjectButton.classList.add("addProject");
     addProjectButton.addEventListener("click", () => {
-        addProjectForm.classList.add("active")
-    })
+        addProjectForm.classList.toggle("active");
+    });
 
     const projectButtonsList = document.createElement("ul");
     projectButtonsList.classList.add("projectButtonsSection");
@@ -245,15 +247,22 @@ function todoMenu() {
         createProject(projectName);
         createProjectButton(projectArray,projectButtonsList);
         setLocalStorage();
-    })
-
+    });
     const projectTitleInput = document.createElement("input")
     const submitProjectButton = document.createElement("button");
     submitProjectButton.textContent = "+"
-    addProjectForm.append(projectTitleInput,submitProjectButton)
+    addProjectForm.append(projectTitleInput,submitProjectButton);
+
+    const addProjectSection = document.createElement("section");
+    addProjectSection.append(addProjectButton,addProjectForm);
+
+    const listSection = document.createElement("section");
+    const listTitle = document.createElement("h2");
+    listTitle.textContent = "Projects";
+    listSection.append(listTitle,projectButtonsList);
 
     menu.classList.add("todoMenu");
-    menu.append(addProjectButton,addProjectForm,projectButtonsList)
+    menu.append(addProjectSection,listSection)
     return menu
 };
 
