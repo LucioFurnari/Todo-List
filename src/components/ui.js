@@ -59,10 +59,12 @@ function taskForm() {
     },true)
 
     const nameInput = document.createElement("input");
+    nameInput.placeholder = "Name";
     nameInput.setAttribute("type","text");
     nameInput.required = true;
     nameInput.classList.add("nameInput");
-    const descriptionArea = document.createElement("textarea")
+    const descriptionArea = document.createElement("textarea");
+    descriptionArea.placeholder = "Description";
     descriptionArea.classList.add("descriptionArea");
     const dateInput = document.createElement("input")
     dateInput.setAttribute("type","date");
@@ -89,7 +91,18 @@ function taskForm() {
     submitButton.classList.add("submitButton")
     submitButton.textContent = "Add"
     
-    form.append(nameInput,descriptionArea,dateInput,prioritySelector,submitButton);
+    const formFieldsetOne = document.createElement("fieldset");
+    formFieldsetOne.classList.add("form-fieldset");
+    formFieldsetOne.append(nameInput,descriptionArea);
+
+    const formFieldsetTwo = document.createElement("fieldset");
+    formFieldsetTwo.classList.add("form-fieldset");
+    const selectorFieldset = document.createElement("fieldset");
+    selectorFieldset.append(prioritySelector)
+    formFieldsetTwo.append(dateInput,selectorFieldset,submitButton);
+
+
+    form.append(formFieldsetOne,formFieldsetTwo);
     formContainer.appendChild(form)
     return formContainer;
 }
