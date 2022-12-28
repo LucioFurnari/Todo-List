@@ -226,6 +226,7 @@ function todoMenu() {
     const menu = document.createElement("div");
 
     const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "Add Project"
     const buttonImage = document.createElement("img");
     buttonImage.src = "../src/images/plus.svg";
     addProjectButton.append(buttonImage);
@@ -253,16 +254,14 @@ function todoMenu() {
     submitProjectButton.textContent = "+"
     addProjectForm.append(projectTitleInput,submitProjectButton);
 
-    const addProjectSection = document.createElement("section");
-    addProjectSection.append(addProjectButton,addProjectForm);
-
     const listSection = document.createElement("section");
+    listSection.classList.add("list-section");
     const listTitle = document.createElement("h2");
     listTitle.textContent = "Projects";
-    listSection.append(listTitle,projectButtonsList);
+    listSection.append(listTitle,addProjectButton,addProjectForm,projectButtonsList);
 
     menu.classList.add("todoMenu");
-    menu.append(addProjectSection,listSection)
+    menu.append(listSection)
     return menu
 };
 
