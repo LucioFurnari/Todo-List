@@ -48,7 +48,9 @@ table {
 }
 
 /*-----------------------------------------------------------------*/
-
+:root {
+	--addProjectButton: rgb(69, 140, 255);
+}
 body {
 	background-color: antiquewhite;
 	font-family: 'Open Sans', sans-serif;
@@ -210,10 +212,12 @@ nav .inputFilter {
 .project-section {
 	margin-bottom: 1rem;
 }
+.list-section {
+	padding: 0.5rem ;
+}
 .list-section h2 {
 	font-size: 1.5rem;
 	border-bottom: 1px solid black;
-	margin-bottom: 1.3rem;
 }
 .todoMenu button {
 	padding: 0.5rem 1rem;
@@ -228,15 +232,19 @@ nav .inputFilter {
 }
 
 .todoMenu .addProject {
+	background-color: var(--addProjectButton);
 	border-bottom: 1px solid transparent;
 	transition: border-bottom 0.3s;
 	padding: 0;
+	display: flex;
+	align-items: center;
+	font-size: 1.2rem;
+	padding: 0.6rem ;
+	margin: 0.8rem 0;
+	border-radius: 4px ;
 }
 .addProject img {
-	width: 3rem;
-}
-.addProject:hover {
-	border-bottom: 1px solid black;
+	width: 2rem;
 }
 .todoMenu li {
 	display: flex;
