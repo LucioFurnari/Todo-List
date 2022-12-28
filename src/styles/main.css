@@ -108,6 +108,30 @@ nav .inputFilter {
 	background-color: rgb(95, 150, 246);
 }
 
+/*--------------------------------- Task Form ---------------------------------*/
+.taskForm{
+	display: none;
+	grid-area: menu;
+}
+.form-fieldset {
+	display: flex;
+	flex-direction: column;
+}
+.addProjectForm {
+	display: none;
+}
+.addProjectForm button {
+	font-size: 1rem;
+}
+.addProjectForm input {
+	padding: 0.5rem;
+	border: none;
+}
+.active {
+	display: flex;
+	align-items: flex-start;
+}
+
 /*--------------------------------- Tasks ---------------------------------*/
 
 .tasks-container {
@@ -178,25 +202,6 @@ nav .inputFilter {
 	align-items: center;
 }
 .priorityField {
-	display: flex;
-	align-items: center;
-}
-/*--------------------------------- Task Form ---------------------------------*/
-.taskForm{
-	display: none;
-	grid-area: menu;
-}
-.addProjectForm {
-	display: none;
-}
-.addProjectForm button {
-	font-size: 1rem;
-}
-.addProjectForm input {
-	padding: 0.5rem;
-	border: none;
-}
-.active {
 	display: flex;
 	align-items: center;
 }
