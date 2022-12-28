@@ -219,23 +219,12 @@ nav .inputFilter {
 	font-size: 1.5rem;
 	border-bottom: 1px solid black;
 }
-.todoMenu button {
-	padding: 0.5rem 1rem;
-	font-size: 1.2rem;
-	border: none;
-	background: transparent;
-	text-decoration: underline 1px transparent;
-	transition: text-decoration 0.3s;
-}
-.todoMenu button:hover {
-	text-decoration: underline 1px black;
-}
 
 .todoMenu .addProject {
 	background-color: var(--addProjectButton);
 	border-bottom: 1px solid transparent;
 	transition: border-bottom 0.3s;
-	padding: 0;
+	border: none;
 	display: flex;
 	align-items: center;
 	font-size: 1.2rem;
@@ -243,14 +232,30 @@ nav .inputFilter {
 	margin: 0.8rem 0;
 	border-radius: 4px ;
 }
+
 .addProject img {
 	width: 2rem;
 }
-.todoMenu li {
+.projectButtonsSection li {
 	display: flex;
 	justify-content: space-between;
 	border: 1px solid black;
 	padding: 0.5rem;
+	transition: background-color 0.3s;
+}
+.projectButtonsSection li button {
+	padding: 0.5rem 1rem;
+	font-size: 1.2rem;
+	border: none;
+	background: transparent;
+	text-decoration: underline 1px transparent;
+	transition: text-decoration 0.3s;
+}
+.projectButtonsSection li:hover {
+	background-color: var(--addProjectButton);
+}
+.projectButtonsSection li button:hover {
+	text-decoration: underline 1px black;
 }
 
 .todoMenu .project-button {
