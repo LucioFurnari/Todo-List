@@ -132,8 +132,8 @@ export function createTaskUi(elem,i){
     taskDate.textContent = "Due Date: " + elem.date
     const taskDescription = document.createElement("p");
     taskDescription.textContent = "Description: " + elem.description;
-    const taskPriority = document.createElement("p");
-    taskPriority.textContent = "Priority: " + elem.priority;
+    // const taskPriority = document.createElement("p");
+    // taskPriority.textContent = "Priority: " + elem.priority;
 
     checkboxInput.addEventListener("click", (event) => {
         event.stopImmediatePropagation()
@@ -162,7 +162,7 @@ export function createTaskUi(elem,i){
     const nameContainer = document.createElement("div");
     nameContainer.append(checkboxInput,taskName)
     buttonContainer.append(editButton,deleteButton);
-    taskContent.append(taskPriority,taskDescription,buttonContainer)
+    taskContent.append(taskDescription,buttonContainer)
     taskInfo.append(nameContainer,taskDate);
 
     /*------ Edit Form ------*/
@@ -205,7 +205,7 @@ export function createTaskUi(elem,i){
         taskName.textContent = "Name: " + editName.value;
         taskDate.textContent = "Due Date: " + editDate.value;
         taskDescription.textContent = "Description: " + editDescription.value;
-        taskPriority.textContent = "Priority: " + prioritySelector.value;
+        // taskPriority.textContent = "Priority: " + prioritySelector.value;
         
         elem.changeName(editName.value);
         elem.changeDate(editDate.value);
@@ -286,9 +286,9 @@ function createProjectButton(array,parent){
         const projectButton = document.createElement("button");
         projectButton.textContent = elem.name;
         projectButton.classList.add("project-button")
+        const projectItem = document.createElement("li");
 
-
-        projectButton.addEventListener("click",() => {
+        projectItem.addEventListener("click",() => {
             saveSelectedProject(index)
             const mainContainer = document.querySelector(".tasks-container");
             while(mainContainer.firstChild){
@@ -301,7 +301,7 @@ function createProjectButton(array,parent){
             
         })
 
-        const projectItem = document.createElement("li");
+        
         projectItem.dataset.project = index;
         projectItem.append(projectButton,deleteProjectButton(array,parent))
         parent.append(projectItem);
