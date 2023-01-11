@@ -2,12 +2,13 @@
 export const projectArray = [];
 export let projectSelected = 0;
 class Todo {
-    constructor(name,date,description,priority,complete){
+    constructor(name,date,description,priority,complete,notes){
         this.name = name;
         this.date = date;
         this.description = description;
         this.priority = priority;
         this.complete = complete;
+        this.notes = notes;
     }
 
     changeName(value) {
@@ -30,6 +31,13 @@ class Todo {
         this.complete = value;
     }
 
+    addNote(value){
+        this.notes.push(value);
+    }
+
+    removeNote(index) {
+        this.notes = notes.splice(index,1);
+    }
 }
 class Project {
     constructor(name,tasks){
@@ -51,7 +59,7 @@ export function saveSelectedProject(index) {
 /*<-------------- Create functions --------------> */
 
 export function createTask(name,date,description,priority,complete) {
-    return new Todo(name,date,description,priority,complete);
+    return new Todo(name,date,description,priority,complete,[]);
 }
 
 export function createProject(name) {
@@ -104,3 +112,5 @@ function getLocalStorage() {
     }
 }
 getLocalStorage();
+projectArray[0].tasks[1].addNote("Esto es una nota")
+console.log(projectArray[0].tasks[1]);
