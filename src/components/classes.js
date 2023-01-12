@@ -36,7 +36,7 @@ class Todo {
     }
 
     removeNote(index) {
-        this.notes = notes.splice(index,1);
+        this.notes.splice(index,1);
     }
 }
 class Project {
@@ -58,8 +58,8 @@ export function saveSelectedProject(index) {
 
 /*<-------------- Create functions --------------> */
 
-export function createTask(name,date,description,priority,complete) {
-    return new Todo(name,date,description,priority,complete,[]);
+export function createTask(name,date,description,priority,complete,notes) {
+    return new Todo(name,date,description,priority,complete,notes);
 }
 
 export function createProject(name) {
@@ -106,11 +106,15 @@ function getLocalStorage() {
             createProject(project.name);
             projectSelected = index;
             project.tasks.forEach(task  => {
-                createTodo(createTask(task.name,task.date,task.description,task.priority,task.complete));
+                createTodo(createTask(task.name,task.date,task.description,task.priority,task.complete,task.notes));
             })
         })
     }
 }
 getLocalStorage();
-projectArray[0].tasks[1].addNote("Esto es una nota")
+
+projectArray[0].tasks[1].addNote("Esto es una nota");
+projectArray[0].tasks[1].addNote("Y esta es otra :P");
+projectArray[0].tasks[1].addNote("Borremos esta");
+projectArray[0].tasks[1].removeNote(1)
 console.log(projectArray[0].tasks[1]);
