@@ -136,6 +136,28 @@ export function createTaskUi(elem,i){
     // taskPriority.textContent = "Priority: " + elem.priority;
     const notesList = document.createElement("ul");
     notesList.classList.add("notes-list");
+
+    /*---------------------------- Test button ----------------------------------------------------------------*/
+    const addNoteButton = document.createElement("button");
+    const noteInput = document.createElement("input");
+    const testContainer = document.createElement("div");
+    testContainer.append(addNoteButton,noteInput)
+    addNoteButton.textContent = "Add Note";
+    addNoteButton.addEventListener("click",() => {
+            while(notesList.firstChild){                 
+                notesList.removeChild(notesList.firstChild)
+            }
+            elem.addNote(noteInput.value);
+            setLocalStorage();
+            elem.notes.forEach((noteText) => {
+                const note = document.createElement("li");
+                note.classList.add("task-note");
+                note.textContent = noteText;
+                notesList.append(note);
+            });
+    });
+
+    /*---------------------------------------------------------------------------------------------------------*/
     elem.notes.forEach((noteText) => {
         const note = document.createElement("li");
         note.classList.add("task-note");
@@ -171,7 +193,7 @@ export function createTaskUi(elem,i){
     nameContainer.append(checkboxInput,taskName)
     buttonContainer.append(editButton,deleteButton);
     taskInfo.append(nameContainer,taskDate);
-    taskContent.append(taskDescription,notesList,buttonContainer);
+    taskContent.append(taskDescription,testContainer,notesList,buttonContainer);
 
     /*------ Edit Form ------*/
 
