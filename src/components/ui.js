@@ -134,6 +134,14 @@ export function createTaskUi(elem,i){
     taskDescription.textContent = "Description: " + elem.description;
     // const taskPriority = document.createElement("p");
     // taskPriority.textContent = "Priority: " + elem.priority;
+    const notesList = document.createElement("ul");
+    notesList.classList.add("notes-list");
+    elem.notes.forEach((noteText) => {
+        const note = document.createElement("li");
+        note.classList.add("task-note");
+        note.textContent = noteText;
+        notesList.append(note);
+    });
 
     checkboxInput.addEventListener("click", (event) => {
         event.stopImmediatePropagation()
@@ -162,8 +170,8 @@ export function createTaskUi(elem,i){
     const nameContainer = document.createElement("div");
     nameContainer.append(checkboxInput,taskName)
     buttonContainer.append(editButton,deleteButton);
-    taskContent.append(taskDescription,buttonContainer)
     taskInfo.append(nameContainer,taskDate);
+    taskContent.append(taskDescription,notesList,buttonContainer);
 
     /*------ Edit Form ------*/
 
