@@ -149,19 +149,37 @@ export function createTaskUi(elem,i){
             }
             elem.addNote(noteInput.value);
             setLocalStorage();
-            elem.notes.forEach((noteText) => {
+            elem.notes.forEach((content,index) => {
                 const note = document.createElement("li");
+                note.classList.add("note");
+                const checkNote = document.createElement("input");
+                checkNote.type = "checkbox";
+                checkNote.checked = content.checkNote;
+                checkNote.addEventListener("click",() => {
+                    elem.checkNote(index);
+                    setLocalStorage()
+                });
                 note.classList.add("task-note");
-                note.textContent = noteText;
+                note.textContent = content.note;
+                note.append(checkNote);
                 notesList.append(note);
             });
     });
 
     /*---------------------------------------------------------------------------------------------------------*/
-    elem.notes.forEach((noteText) => {
+    elem.notes.forEach((content,index) => {
         const note = document.createElement("li");
+        note.classList.add("note");
+        const checkNote = document.createElement("input");
+        checkNote.type = "checkbox";
+        checkNote.checked = content.checkNote;
+        checkNote.addEventListener("click",() => {
+            elem.checkNote(index);
+            setLocalStorage()
+        });
         note.classList.add("task-note");
-        note.textContent = noteText;
+        note.textContent = content.note;
+        note.append(checkNote);
         notesList.append(note);
     });
 
