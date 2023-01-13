@@ -187,11 +187,14 @@ nav .inputFilter {
 	display: flex;
 }
 .taskContent {
-	
 	overflow: hidden;
 	background-color: rgb(203, 203, 203);
-	max-height: 0;
-	transition: max-height 0.3s ease-out;
+	height: 0;
+	transition: height 0.3s ease-out;
+}
+.notes-list {
+	overflow: auto;
+	height: 120px;
 }
 .taskContent div {
 	display: flex;
@@ -200,7 +203,7 @@ nav .inputFilter {
 
 .taskContent-active{
 	display: block;
-	max-height: 100px;
+	height: 200px;
 }
 .taskContent-hide {
 	display: none;
