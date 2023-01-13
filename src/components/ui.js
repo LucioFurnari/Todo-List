@@ -138,31 +138,32 @@ export function createTaskUi(elem,i){
     notesList.classList.add("notes-list");
 
     /*---------------------------- Test button ----------------------------------------------------------------*/
-    const addNoteButton = document.createElement("button");
+    const addNoteForm = document.createElement("form");
     const noteInput = document.createElement("input");
-    const testContainer = document.createElement("div");
-    testContainer.append(addNoteButton,noteInput)
+    const addNoteButton = document.createElement("button");
+    addNoteForm.append(noteInput,addNoteButton);
     addNoteButton.textContent = "Add Note";
-    addNoteButton.addEventListener("click",() => {
-            while(notesList.firstChild){                 
-                notesList.removeChild(notesList.firstChild)
-            }
-            elem.addNote(noteInput.value);
-            setLocalStorage();
-            elem.notes.forEach((content,index) => {
-                const note = document.createElement("li");
-                note.classList.add("note");
-                const checkNote = document.createElement("input");
-                checkNote.type = "checkbox";
-                checkNote.checked = content.checkNote;
-                checkNote.addEventListener("click",() => {
-                    elem.checkNote(index);
-                    setLocalStorage()
-                });
-                note.textContent = content.note;
-                note.append(checkNote);
-                notesList.append(note);
+    addNoteForm.addEventListener("submit",(event) => {
+        event.preventDefault()
+        while(notesList.firstChild){                 
+            notesList.removeChild(notesList.firstChild)
+        }
+        elem.addNote(noteInput.value);
+        setLocalStorage();
+        elem.notes.forEach((content,index) => {
+            const note = document.createElement("li");
+            note.classList.add("note");
+            const checkNote = document.createElement("input");
+            checkNote.type = "checkbox";
+            checkNote.checked = content.checkNote;
+            checkNote.addEventListener("click",() => {
+                elem.checkNote(index);
+                setLocalStorage()
             });
+            note.textContent = content.note;
+            note.append(checkNote);
+            notesList.append(note);
+        });
     });
 
     /*---------------------------------------------------------------------------------------------------------*/
@@ -209,7 +210,7 @@ export function createTaskUi(elem,i){
     nameContainer.append(checkboxInput,taskName)
     buttonContainer.append(editButton,deleteButton);
     taskInfo.append(nameContainer,taskDate);
-    taskContent.append(taskDescription,testContainer,notesList,buttonContainer);
+    taskContent.append(taskDescription,addNoteForm,notesList,buttonContainer);
 
     /*------ Edit Form ------*/
 
