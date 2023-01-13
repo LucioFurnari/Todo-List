@@ -31,12 +31,16 @@ class Todo {
         this.complete = value;
     }
 
-    addNote(value){
-        this.notes.push(value);
+    addNote(note){
+        this.notes.push({note,checkNote: false});
     }
 
     removeNote(index) {
         this.notes.splice(index,1);
+    }
+    checkNote(index) {
+        this.notes[index].checkNote = !this.notes[index].checkNote;
+        console.log(this.notes);
     }
 
     crossNote(index) {
@@ -117,8 +121,8 @@ function getLocalStorage() {
 }
 getLocalStorage();
 
-projectArray[0].tasks[1].addNote("Esto es una nota");
-projectArray[0].tasks[1].addNote("Y esta es otra :P");
-projectArray[0].tasks[1].addNote("Borremos esta");
-projectArray[0].tasks[1].removeNote(1)
-console.log(projectArray[0].tasks[1]);
+// projectArray[0].tasks[1].addNote("Esto es una nota");
+// projectArray[0].tasks[1].addNote("Y esta es otra :P");
+// projectArray[0].tasks[1].addNote("Borremos esta");
+// projectArray[0].tasks[1].removeNote(1)
+// console.log(projectArray[0].tasks[1]);
