@@ -2,7 +2,7 @@
 export const projectArray = [];
 export let projectSelected = 0;
 class Todo {
-    constructor(name,date,description,priority,complete,notes){
+    constructor(name,date,description,priority,complete,notes = []){
         this.name = name;
         this.date = date;
         this.description = description;
@@ -37,6 +37,10 @@ class Todo {
 
     removeNote(index) {
         this.notes.splice(index,1);
+    }
+
+    crossNote(index) {
+
     }
 }
 class Project {
