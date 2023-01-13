@@ -159,7 +159,6 @@ export function createTaskUi(elem,i){
                     elem.checkNote(index);
                     setLocalStorage()
                 });
-                note.classList.add("task-note");
                 note.textContent = content.note;
                 note.append(checkNote);
                 notesList.append(note);
@@ -177,7 +176,6 @@ export function createTaskUi(elem,i){
             elem.checkNote(index);
             setLocalStorage()
         });
-        note.classList.add("task-note");
         note.textContent = content.note;
         note.append(checkNote);
         notesList.append(note);
