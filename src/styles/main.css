@@ -196,6 +196,11 @@ nav .inputFilter {
 	overflow: auto;
 	height: 120px;
 }
+.note {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
 .taskContent div {
 	display: flex;
 	justify-content: flex-end;
