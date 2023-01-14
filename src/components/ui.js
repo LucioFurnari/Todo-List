@@ -162,7 +162,7 @@ export function createTaskUi(elem,i){
                 setLocalStorage()
             });
             noteText.textContent = content.note;
-            note.append(noteText,checkNote);
+            note.append(checkNote,noteText);
             notesList.append(note);
         });
     });
@@ -180,7 +180,7 @@ export function createTaskUi(elem,i){
             setLocalStorage()
         });
         noteText.textContent = content.note;
-        note.append(noteText,checkNote);
+        note.append(checkNote,noteText);
         notesList.append(note);
     });
 
