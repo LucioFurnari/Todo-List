@@ -152,6 +152,7 @@ export function createTaskUi(elem,i){
         setLocalStorage();
         elem.notes.forEach((content,index) => {
             const note = document.createElement("li");
+            const noteText = document.createElement("p");
             note.classList.add("note");
             const checkNote = document.createElement("input");
             checkNote.type = "checkbox";
@@ -160,8 +161,8 @@ export function createTaskUi(elem,i){
                 elem.checkNote(index);
                 setLocalStorage()
             });
-            note.textContent = content.note;
-            note.append(checkNote);
+            noteText.textContent = content.note;
+            note.append(noteText,checkNote);
             notesList.append(note);
         });
     });
@@ -169,6 +170,7 @@ export function createTaskUi(elem,i){
     /*---------------------------------------------------------------------------------------------------------*/
     elem.notes.forEach((content,index) => {
         const note = document.createElement("li");
+        const noteText = document.createElement("p");
         note.classList.add("note");
         const checkNote = document.createElement("input");
         checkNote.type = "checkbox";
@@ -177,8 +179,8 @@ export function createTaskUi(elem,i){
             elem.checkNote(index);
             setLocalStorage()
         });
-        note.textContent = content.note;
-        note.append(checkNote);
+        noteText.textContent = content.note;
+        note.append(noteText,checkNote);
         notesList.append(note);
     });
 
