@@ -137,7 +137,7 @@ export function createTaskUi(elem,i){
     const notesList = document.createElement("ul");
     notesList.classList.add("notes-list");
 
-    /*---------------------------- Test button ----------------------------------------------------------------*/
+    /*---------------------------- Add Notes ----------------------------------------------------------------*/
     const addNoteForm = document.createElement("form");
     const noteInput = document.createElement("input");
     const addNoteButton = document.createElement("button");
@@ -169,7 +169,6 @@ export function createTaskUi(elem,i){
         });
     });
 
-    /*---------------------------------------------------------------------------------------------------------*/
     elem.notes.forEach((content,index) => {
         const note = document.createElement("li");
         const noteText = document.createElement("label");
@@ -187,6 +186,8 @@ export function createTaskUi(elem,i){
         note.append(checkNote,noteText);
         notesList.append(note);
     });
+
+    /*---------------------------------------------------------------------------------------------------------*/
 
     checkboxInput.addEventListener("click", (event) => {
         event.stopImmediatePropagation()
@@ -365,9 +366,14 @@ function deleteProjectButton(array,parent) {
     const deleteProjectButton = document.createElement("button");
         deleteProjectButton.textContent = "X"; //Cambiar por un icono
         deleteProjectButton.addEventListener("click",(event) => {
+            event.stopImmediatePropagation()
             deleteProject(event);
             createProjectButton(array,parent);
             setLocalStorage();
+            const mainContainer = document.querySelector(".tasks-container");
+            while(mainContainer.firstChild){
+                mainContainer.removeChild(mainContainer.firstChild)
+            }
         })
     return deleteProjectButton;
 }
