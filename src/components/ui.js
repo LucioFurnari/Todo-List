@@ -152,9 +152,11 @@ export function createTaskUi(elem,i){
         setLocalStorage();
         elem.notes.forEach((content,index) => {
             const note = document.createElement("li");
-            const noteText = document.createElement("p");
+            const noteText = document.createElement("label");
+            noteText.htmlFor = `note-${index}`
             note.classList.add("note");
             const checkNote = document.createElement("input");
+            checkNote.id = `note-${index}`;
             checkNote.type = "checkbox";
             checkNote.checked = content.checkNote;
             checkNote.addEventListener("click",() => {
@@ -170,9 +172,11 @@ export function createTaskUi(elem,i){
     /*---------------------------------------------------------------------------------------------------------*/
     elem.notes.forEach((content,index) => {
         const note = document.createElement("li");
-        const noteText = document.createElement("p");
+        const noteText = document.createElement("label");
+        noteText.htmlFor = `note-${index}`
         note.classList.add("note");
         const checkNote = document.createElement("input");
+        checkNote.id = `note-${index}`;
         checkNote.type = "checkbox";
         checkNote.checked = content.checkNote;
         checkNote.addEventListener("click",() => {
