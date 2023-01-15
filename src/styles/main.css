@@ -203,7 +203,7 @@ nav .inputFilter {
 	align-items: center;
 }
 
-.note input[type=checkbox]:checked + p  {
+.note input[type=checkbox]:checked + label  {
 	text-decoration: line-through;
 }
 .taskContent div {
