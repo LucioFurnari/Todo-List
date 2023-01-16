@@ -14,10 +14,9 @@ export function createUI(){
 }
 /* <-------------------------------- Todo section ---------------------------------> */
 function todoSection(){
-    const section = document.createElement("div")
-    section.classList.add("todo-section")
-
     const addTaskSection = document.createElement("div");
+    addTaskSection.classList.add("todo-section");
+
     const tasksContainer = document.createElement("div");
     tasksContainer.classList.add("tasks-container")
 
@@ -30,10 +29,9 @@ function todoSection(){
         const taskForm = document.querySelector(".taskForm");
         taskForm.classList.toggle("active")
     });
-    addTaskButton.append(buttonImg)
-    addTaskSection.append(addTaskButton,taskForm())
-    section.append(addTaskSection,tasksContainer)
-    return section
+    addTaskButton.append(buttonImg);
+    addTaskSection.append(addTaskButton,taskForm(),tasksContainer);
+    return addTaskSection;
 }
 
 /* <-------- Task Form --------> */
