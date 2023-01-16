@@ -21,14 +21,16 @@ function todoSection(){
     const tasksContainer = document.createElement("div");
     tasksContainer.classList.add("tasks-container")
 
-    const addTaskButton = document.createElement("img");
+    const addTaskButton = document.createElement("div");
+    const buttonImg = document.createElement("img");
+
     addTaskButton.classList.add("addTaskButton")
-    addTaskButton.src = "../src/images/plus.svg"
+    buttonImg.src = "../src/images/plus.svg"
     addTaskButton.addEventListener("click",() => {
         const taskForm = document.querySelector(".taskForm");
         taskForm.classList.toggle("active")
     });
-
+    addTaskButton.append(buttonImg)
     addTaskSection.append(addTaskButton,taskForm())
     section.append(addTaskSection,tasksContainer)
     return section
