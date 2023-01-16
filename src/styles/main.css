@@ -102,15 +102,33 @@ nav .inputFilter {
 	height: 100vh;
 }
 .addTaskButton {
+	display: flex;
+	align-items: center;
+	font-size:0;
 	width: 3rem;
 	margin: 1rem;
 	border-radius: 50%;
 	border: 1px solid black;
-	transition: transform 0.3s, background-color 0.3s ease-out;
+	transition: transform 0.3s, background-color 0.3s ease-out, font-size 0.3s ease-out;
+}
+.addTaskButton::after {
+	content: "New Task";
+	white-space: nowrap;
+	background-color: rgb(95, 150, 246);
+	padding:0 1rem;
+	border-radius: 10px;
+	margin-left: 0.8rem;
+}
+.addTaskButton p {
+	background-color:rgb(95, 150, 246);
 }
 .addTaskButton:hover {
 	background-color: rgb(95, 150, 246);
 	transform: scale(1.2);
+	font-size: 1rem;
+}
+.addTaskButton:hover::after {
+	padding:0.6rem 1rem;
 }
 
 /*--------------------------------- Task Form ---------------------------------*/
