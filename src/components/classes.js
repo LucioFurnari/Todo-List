@@ -1,3 +1,5 @@
+import { isThisWeek, isThisMonth, parseISO } from 'date-fns';
+
 
 export const projectArray = [];
 export let projectSelected = 0;
@@ -119,6 +121,22 @@ function getLocalStorage() {
         })
     }
 }
+
+/*<-------------- Filter functions --------------> */
+
+export function filterTasksWeek() {
+    let thisWeek = []
+    projectArray.map(todo => {
+        todo.tasks.map(task => {
+            let date = parseISO(task.date);
+            let result = isThisWeek(date);
+            if (result) {
+                thisWeek.push(task);
+            }
+        })
+    });
+    return thisWeek;
+}   
 getLocalStorage();
 
 // projectArray[0].tasks[1].addNote("Esto es una nota");
