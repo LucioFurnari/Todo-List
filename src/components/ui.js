@@ -7,7 +7,7 @@ import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
-import { filterTasksWeek } from "./classes";
+import { filterTasksWeek,filterTasksMonth } from "./classes";
 
 export function createUI(){
     const root = document.querySelector("#content");
@@ -328,6 +328,7 @@ function todoMenu() {
     weekButton.textContent = "This Week";
     const monthButton = document.createElement("button");
     monthButton.textContent = "This Month";
+
     weekButton.addEventListener("click",() => {
         let thisWeek = filterTasksWeek();
         let mainContainer = document.querySelector(".tasks-container");
@@ -335,6 +336,17 @@ function todoMenu() {
             mainContainer.removeChild(mainContainer.firstChild);
         }
         thisWeek.map((task,index) => {
+            mainContainer.append(createTaskUi(task,index));
+        });
+    });
+
+    monthButton.addEventListener("click",() => {
+        let thisMonth = filterTasksMonth();
+        let mainContainer = document.querySelector(".tasks-container");
+        while (mainContainer.firstChild) {
+            mainContainer.removeChild(mainContainer.firstChild);
+        }
+        thisMonth.map((task,index) => {
             mainContainer.append(createTaskUi(task,index));
         });
     });
