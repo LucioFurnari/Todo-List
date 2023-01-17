@@ -125,7 +125,7 @@ function getLocalStorage() {
 /*<-------------- Filter functions --------------> */
 
 export function filterTasksWeek() {
-    let thisWeek = []
+    let thisWeek = [];
     projectArray.map(todo => {
         todo.tasks.map(task => {
             let date = parseISO(task.date);
@@ -138,7 +138,7 @@ export function filterTasksWeek() {
     return thisWeek;
 }   
 export function filterTasksMonth() {
-    let thisMonth = []
+    let thisMonth = [];
     projectArray.map(todo => {
         todo.tasks.map(task => {
             let date = parseISO(task.date);
