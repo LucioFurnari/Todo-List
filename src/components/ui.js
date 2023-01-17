@@ -7,7 +7,6 @@ import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
-import { parseISO } from "date-fns";
 import { filterTasksWeek } from "./classes";
 
 export function createUI(){
@@ -132,8 +131,6 @@ export function createTaskUi(elem,i){
     taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
     taskDate.textContent = "Due Date: " + elem.date;
-    let testDate = parseISO(elem.date);
-    console.log(testDate);
     const taskDescription = document.createElement("p");
     taskDescription.textContent = "Description: " + elem.description;
     // const taskPriority = document.createElement("p");
@@ -324,6 +321,8 @@ function todoMenu() {
     const submitProjectButton = document.createElement("button");
     submitProjectButton.textContent = "+"
     addProjectForm.append(projectTitleInput,submitProjectButton);
+
+    /*<---------------------- Week and Month Buttons ----------------------*/
 
     const weekButton = document.createElement("button");
     weekButton.textContent = "This Week";
