@@ -351,11 +351,25 @@ function todoMenu() {
         });
     });
 
+    const inboxButton = document.createElement("button");
+    inboxButton.textContent = "Inbox";
+    inboxButton.addEventListener("click",() => {
+        let mainContainer = document.querySelector(".tasks-container");
+        while (mainContainer.firstChild) {
+            mainContainer.removeChild(mainContainer.firstChild);
+        }
+        projectArray.map((todo) => {
+            todo.tasks.map((task,index) => {
+                mainContainer.append(createTaskUi(task,index));
+            })
+        });
+    })
+
     const listSection = document.createElement("section");
     listSection.classList.add("list-section");
     const listTitle = document.createElement("h2");
     listTitle.textContent = "Projects";
-    listSection.append(weekButton,monthButton,listTitle,addProjectButton,addProjectForm,projectButtonsList);
+    listSection.append(inboxButton,weekButton,monthButton,listTitle,addProjectButton,addProjectForm,projectButtonsList);
 
     menu.classList.add("todoMenu");
     menu.append(listSection)
