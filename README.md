@@ -5,6 +5,8 @@ Technologies used:
 - HTML.
 - CSS.
 - JavaScript.
+- Webpack.
+- Date-fns library.
 
 Features:
 - Can create multiples task with name, date, description and priority.
@@ -12,11 +14,10 @@ Features:
 - Create, delete and name projects.
 - Separate the tasks in projects.
 - All the projects and task are save in the web local storage.
+- Add multiples notes for each task.
+- Can filter task that are for this week or month.
 
 
 Future plans:
-- Add multiples notes for each task
 - Filter each task for name or date.
-- Use a library to manipulate dates.
-- Depend of the date, filter the task with today, and week.
 - Maybe add a home or inbox to see ALL todo.
