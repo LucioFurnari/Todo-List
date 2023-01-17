@@ -7,12 +7,14 @@ import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
+import { parseISO } from "date-fns";
+import { filterTasksWeek } from "./classes";
 
 export function createUI(){
     const root = document.querySelector("#content");
     root.append(navBar(),todoMenu(),todoSection())
 }
-/* <-------------------------------- Todo section ---------------------------------> */
+/*<---------------------------------------------------------------- Todo section ----------------------------------------------------------------> */
 function todoSection(){
     const addTaskSection = document.createElement("div");
     addTaskSection.classList.add("todo-section");
@@ -34,7 +36,7 @@ function todoSection(){
     return addTaskSection;
 }
 
-/* <-------- Task Form --------> */
+/* <---------------------------------------------------------------- Task Form ----------------------------------------------------------------> */
 function taskForm() {
     const formContainer = document.createElement("div");
     formContainer.classList.add("formContainer")
@@ -107,7 +109,7 @@ function taskForm() {
     return formContainer;
 }
 
-/* <---------------- Task UI ----------------> */
+/* <---------------------------------------------------------------- Task UI ----------------------------------------------------------------> */
 
 export function createTaskUi(elem,i){
     
@@ -129,7 +131,9 @@ export function createTaskUi(elem,i){
     const taskName = document.createElement("p");
     taskName.textContent = "Name: " + elem.name;
     const taskDate = document.createElement("p");
-    taskDate.textContent = "Due Date: " + elem.date
+    taskDate.textContent = "Due Date: " + elem.date;
+    let testDate = parseISO(elem.date);
+    console.log(testDate);
     const taskDescription = document.createElement("p");
     taskDescription.textContent = "Description: " + elem.description;
     // const taskPriority = document.createElement("p");
@@ -288,7 +292,7 @@ function resetUiContainer(parent,selected,array) {
     })
     
 }
-/* <-------- Menu --------> */
+/* <---------------------------------------------------------------- Menu ----------------------------------------------------------------> */
 function todoMenu() {
     const menu = document.createElement("div");
 
@@ -321,11 +325,26 @@ function todoMenu() {
     submitProjectButton.textContent = "+"
     addProjectForm.append(projectTitleInput,submitProjectButton);
 
+    const weekButton = document.createElement("button");
+    weekButton.textContent = "This Week";
+    const monthButton = document.createElement("button");
+    monthButton.textContent = "This Month";
+    weekButton.addEventListener("click",() => {
+        let thisWeek = filterTasksWeek();
+        let mainContainer = document.querySelector(".tasks-container");
+        while (mainContainer.firstChild) {
+            mainContainer.removeChild(mainContainer.firstChild);
+        }
+        thisWeek.map((task,index) => {
+            mainContainer.append(createTaskUi(task,index));
+        });
+    });
+
     const listSection = document.createElement("section");
     listSection.classList.add("list-section");
     const listTitle = document.createElement("h2");
     listTitle.textContent = "Projects";
-    listSection.append(listTitle,addProjectButton,addProjectForm,projectButtonsList);
+    listSection.append(weekButton,monthButton,listTitle,addProjectButton,addProjectForm,projectButtonsList);
 
     menu.classList.add("todoMenu");
     menu.append(listSection)
