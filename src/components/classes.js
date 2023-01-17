@@ -137,6 +137,19 @@ export function filterTasksWeek() {
     });
     return thisWeek;
 }   
+export function filterTasksMonth() {
+    let thisMonth = []
+    projectArray.map(todo => {
+        todo.tasks.map(task => {
+            let date = parseISO(task.date);
+            let result = isThisMonth(date);
+            if (result) {
+                thisMonth.push(task);
+            }
+        })
+    });
+    return thisMonth;
+}
 getLocalStorage();
 
 // projectArray[0].tasks[1].addNote("Esto es una nota");
