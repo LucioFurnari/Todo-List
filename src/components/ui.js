@@ -8,6 +8,8 @@ import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
 import { filterTasksWeek,filterTasksMonth } from "./classes";
+import plus from "../images/plus.svg";
+import calendar from "../images/calendar-check.svg"
 
 export function createUI(){
     const root = document.querySelector("#content");
@@ -25,7 +27,7 @@ function todoSection(){
     const buttonImg = document.createElement("img");
 
     addTaskButton.classList.add("addTaskButton")
-    buttonImg.src = "../src/images/plus.svg"
+    buttonImg.src = plus;
     addTaskButton.addEventListener("click",() => {
         const taskForm = document.querySelector(".taskForm");
         taskForm.classList.toggle("active")
@@ -296,7 +298,7 @@ function todoMenu() {
     const addProjectButton = document.createElement("button");
     addProjectButton.textContent = "Add Project"
     const buttonImage = document.createElement("img");
-    buttonImage.src = "../src/images/plus.svg";
+    buttonImage.src = plus;
     addProjectButton.append(buttonImage);
     addProjectButton.classList.add("addProject");
     addProjectButton.addEventListener("click", () => {
@@ -429,7 +431,7 @@ function navBar() {
     title.classList.add("nav-title");
     const logo = document.createElement("img");
     logo.classList.add("logo");
-    logo.src = "../src/images/calendar-check.svg"
+    logo.src = calendar;
     const inputFilter = document.createElement("input")
     inputFilter.classList.add("inputFilter");
 
