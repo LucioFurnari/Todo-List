@@ -326,6 +326,8 @@ function todoMenu() {
 
     /*<---------------------- Week and Month Buttons ----------------------*/
 
+    const filterButtonsContainer = document.createElement("div");
+    filterButtonsContainer.classList.add("filter-button-container");
     const weekButton = document.createElement("button");
     weekButton.classList.add("menu-weekBtn");
     weekButton.textContent = "This Week";
