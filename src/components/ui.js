@@ -328,6 +328,7 @@ function todoMenu() {
 
     const filterButtonsContainer = document.createElement("div");
     filterButtonsContainer.classList.add("filter-button-container");
+
     const weekButton = document.createElement("button");
     weekButton.classList.add("menu-weekBtn");
     weekButton.textContent = "This Week";
@@ -371,11 +372,13 @@ function todoMenu() {
         });
     })
 
+    filterButtonsContainer.append(inboxButton,weekButton,monthButton);
+
     const listSection = document.createElement("section");
     listSection.classList.add("list-section");
     const listTitle = document.createElement("h2");
     listTitle.textContent = "Projects";
-    listSection.append(inboxButton,weekButton,monthButton,listTitle,addProjectButton,addProjectForm,projectButtonsList);
+    listSection.append(filterButtonsContainer,listTitle,addProjectButton,addProjectForm,projectButtonsList);
 
     menu.classList.add("todoMenu");
     menu.append(listSection)
