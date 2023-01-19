@@ -60,10 +60,11 @@ body {
 	grid-template-areas: "nav nav"
 						"menu main";
 	grid-template-columns: auto 1fr;
-	grid-template-rows:repeat(2,auto);
+	grid-template-rows: 100px 1fr;
 	align-items: center;
 	position: relative;
 	background-color:aquamarine;
+	height: 100vh;
 }
 
 /*--------------------------------- Nav ---------------------------------*/
@@ -99,7 +100,7 @@ nav .inputFilter {
 
 	grid-area: main;
 	background-color: white;
-	height: 100vh;
+	height: 100%;
 }
 .addTaskButton {
 	display: flex;
