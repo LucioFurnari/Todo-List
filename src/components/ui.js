@@ -327,8 +327,10 @@ function todoMenu() {
     /*<---------------------- Week and Month Buttons ----------------------*/
 
     const weekButton = document.createElement("button");
+    weekButton.classList.add("menu-weekBtn");
     weekButton.textContent = "This Week";
     const monthButton = document.createElement("button");
+    monthButton.classList.add("menu-monthBtn");
     monthButton.textContent = "This Month";
 
     weekButton.addEventListener("click",() => {
