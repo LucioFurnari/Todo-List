@@ -270,7 +270,19 @@ nav .inputFilter {
 	font-size: 1.5rem;
 	border-bottom: 1px solid black;
 }
-
+.filter-button-container button {
+	display: block;
+	background-color: var(--addProjectButton);
+	border-bottom: 1px solid transparent;
+	transition: border-bottom 0.3s;
+	border: none;
+	display: flex;
+	align-items: center;
+	font-size: 1.2rem;
+	padding: 0.6rem ;
+	margin: 0.8rem 0;
+	border-radius: 4px ;
+}
 .todoMenu .addProject {
 	background-color: var(--addProjectButton);
 	border-bottom: 1px solid transparent;
