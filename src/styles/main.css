@@ -318,6 +318,9 @@ nav .inputFilter {
 .projectButtonsSection li:hover {
 	background-color: var(--addProjectButton);
 }
+.project-selected {
+	background-color: var(--addProjectButton);
+}
 .projectButtonsSection li button:hover {
 	text-decoration: underline 1px black;
 }
