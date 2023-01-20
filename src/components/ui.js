@@ -7,7 +7,7 @@ import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
-import { filterTasksWeek,filterTasksMonth } from "./classes";
+import { filterTasksWeek,filterTasksMonth, resetProjectSelectedValue } from "./classes";
 import plus from "../images/plus.svg";
 import calendar from "../images/calendar-check.svg"
 
@@ -210,10 +210,12 @@ export function createTaskUi(elem,i){
     const deleteButton = document.createElement("button"); // Button for delete Task
     deleteButton.textContent = "DELETE"
     deleteButton.addEventListener("click",() => {
-        const mainContainer = document.querySelector(".tasks-container");
-        deleteTask(i);
-        resetUiContainer(mainContainer,projectSelected,projectArray);
-        setLocalStorage();
+        if(projectSelected != undefined) {
+            const mainContainer = document.querySelector(".tasks-container");
+            deleteTask(i);
+            resetUiContainer(mainContainer,projectSelected,projectArray);
+            setLocalStorage();
+        }
     });
     const buttonContainer = document.createElement("div");
     const nameContainer = document.createElement("div");
@@ -337,6 +339,7 @@ function todoMenu() {
     monthButton.textContent = "This Month";
 
     weekButton.addEventListener("click",() => {
+        resetProjectSelectedValue()
         let thisWeek = filterTasksWeek();
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
@@ -362,6 +365,7 @@ function todoMenu() {
     });
 
     monthButton.addEventListener("click",() => {
+        resetProjectSelectedValue()
         let thisMonth = filterTasksMonth();
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
@@ -388,6 +392,7 @@ function todoMenu() {
     const inboxButton = document.createElement("button");
     inboxButton.textContent = "Inbox";
     inboxButton.addEventListener("click",() => {
+        resetProjectSelectedValue()
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
             mainContainer.removeChild(mainContainer.firstChild);
