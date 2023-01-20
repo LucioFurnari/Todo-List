@@ -296,7 +296,7 @@ function todoMenu() {
     const menu = document.createElement("div");
 
     const addProjectButton = document.createElement("button");
-    addProjectButton.textContent = "Add Project"
+    addProjectButton.textContent = "New Project"
     const buttonImage = document.createElement("img");
     buttonImage.src = plus;
     addProjectButton.append(buttonImage);
@@ -345,6 +345,20 @@ function todoMenu() {
         thisWeek.map((task,index) => {
             mainContainer.append(createTaskUi(task,index));
         });
+        const filterContainer = document.querySelectorAll(".filter-button-container button");
+        
+        filterContainer.forEach(children => {
+        if(children.classList.contains("project-selected")) {
+            children.classList.remove("project-selected");
+            }
+        });
+        const projectsButtonList = document.querySelectorAll(".projectButtonsSection li");
+        projectsButtonList.forEach(children => {
+            if(children.classList.contains("project-selected")) {
+                children.classList.remove("project-selected");
+                }
+            });
+        weekButton.classList.add("project-selected");
     });
 
     monthButton.addEventListener("click",() => {
@@ -356,6 +370,19 @@ function todoMenu() {
         thisMonth.map((task,index) => {
             mainContainer.append(createTaskUi(task,index));
         });
+        const filterContainer = document.querySelectorAll(".filter-button-container button");
+        filterContainer.forEach(children => {
+        if(children.classList.contains("project-selected")) {
+            children.classList.remove("project-selected");
+            }
+        });
+        const projectsButtonList = document.querySelectorAll(".projectButtonsSection li");
+        projectsButtonList.forEach(children => {
+            if(children.classList.contains("project-selected")) {
+                children.classList.remove("project-selected");
+                }
+            });
+        monthButton.classList.add("project-selected");
     });
 
     const inboxButton = document.createElement("button");
@@ -370,9 +397,23 @@ function todoMenu() {
                 mainContainer.append(createTaskUi(task,index));
             })
         });
+        const filterContainer = document.querySelectorAll(".filter-button-container button");
+        filterContainer.forEach(children => {
+        if(children.classList.contains("project-selected")) {
+            children.classList.remove("project-selected");
+            }
+        });
+        const projectsButtonList = document.querySelectorAll(".projectButtonsSection li");
+        projectsButtonList.forEach(children => {
+            if(children.classList.contains("project-selected")) {
+                children.classList.remove("project-selected");
+                }
+            });
+        inboxButton.classList.add("project-selected");
     })
 
     filterButtonsContainer.append(inboxButton,weekButton,monthButton);
+    
 
     const listSection = document.createElement("section");
     listSection.classList.add("list-section");
@@ -409,8 +450,14 @@ function createProjectButton(array,parent){
             listContainer.forEach(children => {
                 if(children.classList.contains("project-selected")) {
                     children.classList.remove("project-selected");
+                    }
+            });
+            const buttonFilterList = document.querySelectorAll(".filter-button-container button");
+            buttonFilterList.forEach(children => {
+                if(children.classList.contains("project-selected")) {
+                    children.classList.remove("project-selected");
                 }
-                });
+            });
             projectItem.classList.add("project-selected");
         })
 
