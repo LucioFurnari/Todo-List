@@ -50,6 +50,7 @@ table {
 /*-----------------------------------------------------------------*/
 :root {
 	--addProjectButton: rgb(69, 140, 255);
+	--transparent: transparent;
 }
 body {
 	background-color: antiquewhite;
@@ -156,6 +157,7 @@ nav .inputFilter {
 }
 .addProjectForm button {
 	font-size: 1rem;
+	margin: auto 0;
 }
 .addProjectForm input {
 	padding: 0.5rem;
@@ -273,17 +275,14 @@ nav .inputFilter {
 }
 .filter-button-container button {
 	display: block;
-	background-color: var(--addProjectButton);
-	border-bottom: 1px solid transparent;
-	transition: border-bottom 0.3s;
-	border: none;
-	display: flex;
-	align-items: center;
+	background-color: var(--transparent);
 	font-size: 1.2rem;
 	padding: 0.6rem ;
 	margin: 0.8rem 0;
 	border-radius: 4px ;
+	border: 1px solid black;
 }
+
 .todoMenu .addProject {
 	background-color: var(--addProjectButton);
 	border-bottom: 1px solid transparent;
@@ -319,7 +318,7 @@ nav .inputFilter {
 	background-color: var(--addProjectButton);
 }
 .project-selected {
-	background-color: var(--addProjectButton);
+	background-color: var(--addProjectButton)!important;
 }
 .projectButtonsSection li button:hover {
 	text-decoration: underline 1px black;
