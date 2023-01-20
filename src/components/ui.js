@@ -20,6 +20,9 @@ function todoSection(){
     const addTaskSection = document.createElement("div");
     addTaskSection.classList.add("todo-section");
 
+    const sectionTitle = document.createElement("h2");
+    sectionTitle.classList.add("section-title");
+
     const tasksContainer = document.createElement("div");
     tasksContainer.classList.add("tasks-container")
 
@@ -33,7 +36,7 @@ function todoSection(){
         taskForm.classList.toggle("active")
     });
     addTaskButton.append(buttonImg);
-    addTaskSection.append(addTaskButton,taskForm(),tasksContainer);
+    addTaskSection.append(addTaskButton,taskForm(),sectionTitle,tasksContainer);
     return addTaskSection;
 }
 
@@ -339,7 +342,9 @@ function todoMenu() {
     monthButton.textContent = "This Month";
 
     weekButton.addEventListener("click",() => {
-        resetProjectSelectedValue()
+        resetProjectSelectedValue();
+        const sectionTitle = document.querySelector(".section-title");
+        sectionTitle.textContent = "This Week";
         let thisWeek = filterTasksWeek();
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
@@ -365,7 +370,9 @@ function todoMenu() {
     });
 
     monthButton.addEventListener("click",() => {
-        resetProjectSelectedValue()
+        resetProjectSelectedValue();
+        const sectionTitle = document.querySelector(".section-title");
+        sectionTitle.textContent = "This Month";
         let thisMonth = filterTasksMonth();
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
@@ -392,7 +399,9 @@ function todoMenu() {
     const inboxButton = document.createElement("button");
     inboxButton.textContent = "Inbox";
     inboxButton.addEventListener("click",() => {
-        resetProjectSelectedValue()
+        resetProjectSelectedValue();
+        const sectionTitle = document.querySelector(".section-title");
+        sectionTitle.textContent = "Inbox";
         let mainContainer = document.querySelector(".tasks-container");
         while (mainContainer.firstChild) {
             mainContainer.removeChild(mainContainer.firstChild);
@@ -442,7 +451,9 @@ function createProjectButton(array,parent){
         const projectItem = document.createElement("li");
 
         projectItem.addEventListener("click",() => {
-            saveSelectedProject(index)
+            saveSelectedProject(index);
+            const sectionTitle = document.querySelector(".section-title");
+            sectionTitle.textContent = elem.name;
             const mainContainer = document.querySelector(".tasks-container");
             while(mainContainer.firstChild){
                 mainContainer.removeChild(mainContainer.firstChild)
