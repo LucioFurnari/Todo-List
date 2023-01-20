@@ -93,7 +93,7 @@ export function deleteProject(event){
 }
 
 export function deleteTask(index) {
-    projectArray[projectSelected].removeTask(index)
+    projectArray[projectSelected].removeTask(index);
 }   
 
 /*<-------------- Initial project with tasks --------------> */
@@ -150,6 +150,10 @@ export function filterTasksMonth() {
         })
     });
     return thisMonth;
+}
+
+export function resetProjectSelectedValue() {
+    projectSelected = undefined;
 }
 getLocalStorage();
 
