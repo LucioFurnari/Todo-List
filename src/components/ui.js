@@ -400,12 +400,18 @@ function createProjectButton(array,parent){
             const mainContainer = document.querySelector(".tasks-container");
             while(mainContainer.firstChild){
                 mainContainer.removeChild(mainContainer.firstChild)
-            }
+                }
             elem.tasks.forEach((item,i) => {
                 const tasks = createTaskUi(item,i);
                 mainContainer.append(tasks);
-            })
-            
+                });
+            const listContainer = document.querySelectorAll(".projectButtonsSection li");
+            listContainer.forEach(children => {
+                if(children.classList.contains("project-selected")) {
+                    children.classList.remove("project-selected");
+                }
+                });
+            projectItem.classList.add("project-selected");
         })
 
         
