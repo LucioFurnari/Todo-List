@@ -316,6 +316,9 @@ function todoMenu() {
     createProjectButton(projectArray,projectButtonsList);
 
     const addProjectForm = document.createElement("form");
+    const projectTitleInput = document.createElement("input");
+    projectTitleInput.placeholder = `Name`;
+    const submitProjectButton = document.createElement("button");
     addProjectForm.classList.add("addProjectForm");
     addProjectForm.addEventListener("submit",(e) => {
         e.preventDefault();
@@ -324,8 +327,6 @@ function todoMenu() {
         createProjectButton(projectArray,projectButtonsList);
         setLocalStorage();
     });
-    const projectTitleInput = document.createElement("input")
-    const submitProjectButton = document.createElement("button");
     submitProjectButton.textContent = "+"
     addProjectForm.append(projectTitleInput,submitProjectButton);
 
