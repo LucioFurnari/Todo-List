@@ -152,6 +152,22 @@ export function filterTasksMonth() {
     return thisMonth;
 }
 
+export function filterTaskForName(value){
+    let newArray = [];
+    let inputValue = value.toLowerCase().trim();
+    if(inputValue || inputValue != "") {
+        projectArray.map(todo => {
+            todo.tasks.map(task => {
+                let taskName = task.name.toLowerCase()
+                if(taskName.includes(inputValue)) {
+                    newArray.push(task);
+                };
+            })
+        });
+    }
+    return newArray;
+}
+/*<---------------------------------------------> */
 export function resetProjectSelectedValue() {
     projectSelected = undefined;
 }
