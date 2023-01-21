@@ -513,6 +513,8 @@ function navBar() {
     inputFilter.addEventListener("input",(event) => {
         let array = filterTaskForName(event.target.value);
         const container = document.querySelector(".tasks-container");
+        const sectionTitle = document.querySelector(".section-title");
+        sectionTitle.textContent = "Searching...";
         while(container.firstChild) {
             container.removeChild(container.firstChild)
         }
