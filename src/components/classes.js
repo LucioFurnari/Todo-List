@@ -2,7 +2,7 @@ import { isThisWeek, isThisMonth, parseISO } from 'date-fns';
 
 
 export const projectArray = [];
-export let projectSelected = undefined;
+export let projectSelected = 0;
 class Todo {
     constructor(name,date,description,priority,complete,notes = []){
         this.name = name;
