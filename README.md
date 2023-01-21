@@ -16,6 +16,7 @@ Features:
 - All the projects and task are save in the web local storage.
 - Add multiples notes for each task.
 - Can filter task that are for this week or month.
+- Search the tasks for name.
 
 
 Future plans:
