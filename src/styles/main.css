@@ -170,7 +170,7 @@ nav .inputFilter {
 }
 .active {
 	display: flex;
-	align-items: flex-start;
+	/* align-items: flex-start; */
 }
 
 /*--------------------------------- Tasks ---------------------------------*/
@@ -303,6 +303,18 @@ nav .inputFilter {
 
 .addProject img {
 	width: 2rem;
+}
+.addProjectForm {
+	padding: 1rem 0;
+}
+.addProjectForm  button {
+	border: none;
+	padding: 0.5rem;
+	background-color: transparent;
+	font-size: 1.5rem;
+}
+.addProjectForm  button:hover {
+	background-color: var(--addProjectButton);
 }
 .projectButtonsSection li {
 	display: flex;
