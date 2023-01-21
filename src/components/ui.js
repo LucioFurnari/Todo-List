@@ -7,7 +7,7 @@ import { projectSelected } from "./classes";
 import { createTask } from "./classes";
 import { createTodo } from "./classes";
 import { setLocalStorage } from "./classes";
-import { filterTasksWeek,filterTasksMonth, resetProjectSelectedValue } from "./classes";
+import { filterTasksWeek,filterTasksMonth, resetProjectSelectedValue,filterTaskForName } from "./classes";
 import plus from "../images/plus.svg";
 import calendar from "../images/calendar-check.svg"
 
@@ -510,6 +510,18 @@ function navBar() {
     logo.src = calendar;
     const inputFilter = document.createElement("input")
     inputFilter.classList.add("inputFilter");
+    inputFilter.addEventListener("input",(event) => {
+        let array = filterTaskForName(event.target.value);
+        const container = document.querySelector(".tasks-container");
+        while(container.firstChild) {
+            container.removeChild(container.firstChild)
+        }
+        array.map((item,index) => {
+            container.append(createTaskUi(item,index));
+        })
+        console.log(array);
+    })
+
 
     nav.append(logo,title,inputFilter);
 
