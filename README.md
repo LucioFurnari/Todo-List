@@ -17,8 +17,3 @@ Features:
 - Add multiples notes for each task.
 - Can filter task that are for this week or month.
 - Search the tasks for name.
-
-
-Future plans:
-- Filter each task for name or date.
-- Maybe add a home or inbox to see ALL todo.
