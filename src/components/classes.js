@@ -99,8 +99,10 @@ export function deleteTask(index) {
 /*<-------------- Initial project with tasks --------------> */
 
 if(!localStorage.getItem("projects")){
-    createProject("Test");
-    createTodo(createTask("Test","2022-12-07","fafa","low",false))
+    createProject("Chores");
+    createTodo(createTask("Laundry","2023-01-23","None","low",false));
+    createTodo(createTask("Wash Dishes","2023-01-23","None","low",false));
+    createTodo(createTask("Take out the trash","2023-01-23","None","medium",false));
 }
 
 /*<-------------- localStorage --------------> */
