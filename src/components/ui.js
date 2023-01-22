@@ -60,7 +60,7 @@ function taskForm() {
                 main.append(createTaskUi(elem,i))
             })
             form.classList.remove("active");
-        };
+        }
         setLocalStorage();
     },true)
 
@@ -439,7 +439,7 @@ function todoMenu() {
     menu.classList.add("todoMenu");
     menu.append(listSection)
     return menu
-};
+}
 
 function createProjectButton(array,parent){
     while(parent.firstChild){
