@@ -133,7 +133,7 @@ export function createTaskUi(elem,i){
     checkboxInput.type = "checkbox";
     checkboxInput.checked = elem.complete;
     const taskName = document.createElement("p");
-    taskName.textContent = "Name: " + elem.name;
+    taskName.textContent = elem.name;
     const taskDate = document.createElement("p");
     taskDate.textContent = "Due Date: " + elem.date;
     const taskDescription = document.createElement("p");
@@ -264,7 +264,7 @@ export function createTaskUi(elem,i){
         e.preventDefault()
 
         task.setAttribute("priority",prioritySelector.value)
-        taskName.textContent = "Name: " + editName.value;
+        taskName.textContent = editName.value;
         taskDate.textContent = "Due Date: " + editDate.value;
         taskDescription.textContent = "Description: " + editDescription.value;
         // taskPriority.textContent = "Priority: " + prioritySelector.value;
