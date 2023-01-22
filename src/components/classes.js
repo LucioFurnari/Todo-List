@@ -44,10 +44,6 @@ class Todo {
         this.notes[index].checkNote = !this.notes[index].checkNote;
         console.log(this.notes);
     }
-
-    crossNote(index) {
-
-    }
 }
 class Project {
     constructor(name,tasks){
@@ -110,7 +106,7 @@ if(!localStorage.getItem("projects")){
 export function setLocalStorage() {
     let newArray = projectArray;
     window.localStorage.setItem("projects",JSON.stringify(newArray))
-};
+}
 function getLocalStorage() {
     let getArray = JSON.parse(window.localStorage.getItem("projects"));
     if(getArray != null){
@@ -163,7 +159,7 @@ export function filterTaskForName(value){
                 let taskName = task.name.toLowerCase()
                 if(taskName.includes(inputValue)) {
                     newArray.push(task);
-                };
+                }
             })
         });
     }
