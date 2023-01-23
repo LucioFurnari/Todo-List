@@ -251,6 +251,9 @@ nav .inputFilter {
 	display: none;
 	
 }
+.taskEdit textarea {
+	resize: none;
+}
 .edit-active {
 	display: flex;
 	align-items: center;
