@@ -50,11 +50,14 @@ table {
 /*-----------------------------------------------------------------*/
 :root {
 	--buttonBackgroundColor: rgb(69, 140, 255);
+	--menuBackgroundColor: rgb(171, 190, 231);
+	--mainBackgroundColor: rgb(230,230,230);
 	--transparent: transparent;
 	--lowPriorityColor: rgb(0, 195, 0);
 	--mediumPriorityColor: rgb(232, 225, 19);
 	--highPriorityColor: rgb(255, 17, 17);
 	--blackColor: rgb(25,25,25);
+
 }
 body {
 	background-color: antiquewhite;
@@ -78,6 +81,8 @@ nav {
 	display: flex;
 	align-items: center;
 	grid-area: nav;
+	height: 100%;
+	background-color: var(--menuBackgroundColor);
 }
 .nav-title{
 	font-size: 2rem;
@@ -104,7 +109,7 @@ nav .inputFilter {
 	align-items: flex-start;
 
 	grid-area: main;
-	background-color: white;
+	background-color: var(--mainBackgroundColor);
 	height: 100%;
 }
 .section-title {
@@ -275,7 +280,7 @@ nav .inputFilter {
 	grid-area: menu;
 	height: 100%;
 	width: 200px;
-	background-color: rgb(150, 175, 240);
+	background-color: var(--menuBackgroundColor);
 	padding:0 0.5rem;
 }
 .project-section {
