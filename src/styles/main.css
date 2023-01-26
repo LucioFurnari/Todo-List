@@ -49,12 +49,12 @@ table {
 
 /*-----------------------------------------------------------------*/
 :root {
-	--addProjectButton: rgb(69, 140, 255);
+	--buttonBackgroundColor: rgb(69, 140, 255);
 	--transparent: transparent;
 	--lowPriorityColor: rgb(0, 195, 0);
 	--mediumPriorityColor: rgb(232, 225, 19);
 	--highPriorityColor: rgb(255, 17, 17);
-	--blackColor: rgba(25,25,25,0);
+	--blackColor: rgb(25,25,25);
 }
 body {
 	background-color: antiquewhite;
@@ -299,7 +299,7 @@ nav .inputFilter {
 }
 
 .todoMenu .addProject {
-	background-color: var(--addProjectButton);
+	background-color: var(--buttonBackgroundColor);
 	border-bottom: 1px solid transparent;
 	transition: border-bottom 0.3s;
 	border: none;
@@ -324,7 +324,7 @@ nav .inputFilter {
 	font-size: 1.5rem;
 }
 .addProjectForm  button:hover {
-	background-color: var(--addProjectButton);
+	background-color: var(--buttonBackgroundColor);
 }
 .projectButtonsSection li {
 	display: flex;
@@ -342,10 +342,10 @@ nav .inputFilter {
 	transition: text-decoration 0.3s;
 }
 .projectButtonsSection li:hover {
-	background-color: var(--addProjectButton);
+	background-color: var(--buttonBackgroundColor);
 }
 .project-selected {
-	background-color: var(--addProjectButton)!important;
+	background-color: var(--buttonBackgroundColor)!important;
 }
 .projectButtonsSection li button:hover {
 	text-decoration: underline 1px var(--blackColor);
