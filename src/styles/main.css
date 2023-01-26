@@ -57,7 +57,7 @@ table {
 	--mediumPriorityColor: rgb(232, 225, 19);
 	--highPriorityColor: rgb(255, 17, 17);
 	--blackColor: rgb(25,25,25);
-
+	--transparentColor: rgba(25,25,25,0);
 }
 body {
 	background-color: antiquewhite;
@@ -194,13 +194,13 @@ nav .inputFilter {
 	min-width: 600px;
 }
 .task[priority="low"] .taskInfo{
-	background: linear-gradient(90deg, var(--lowPriorityColor) 2%, var(--blackColor) 1%);
+	background: linear-gradient(90deg, var(--lowPriorityColor) 2%, var(--transparentColor) 1%);
 }
 .task[priority="medium"] .taskInfo{
-	background: linear-gradient(90deg, var(--mediumPriorityColor) 2%, var(--blackColor) 1%);
+	background: linear-gradient(90deg, var(--mediumPriorityColor) 2%, var(--transparentColor) 1%);
 }
 .task[priority="high"] .taskInfo{
-	background: linear-gradient(90deg, var(--highPriorityColor) 2%, var(--blackColor) 1%);
+	background: linear-gradient(90deg, var(--highPriorityColor) 2%, var(--transparentColor) 1%);
 }
 .task input:checked ~ p {
 	text-decoration: line-through;
