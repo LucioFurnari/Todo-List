@@ -234,10 +234,15 @@ export function createTaskUi(elem,i){
 
     const editName = document.createElement("input");
     editName.value = elem.name;
+
     const editDate = document.createElement("input");
     editDate.setAttribute("type","date");
     editDate.required = true;
     editDate.value = elem.date;
+
+    const editFormFieldset = document.createElement("fieldset");
+    editFormFieldset.append(editName,editDate);
+
     const editDescription = document.createElement("textarea");
     editDescription.value = elem.description;
 
@@ -279,7 +284,7 @@ export function createTaskUi(elem,i){
         setLocalStorage();
     },true)
 
-    taskEdit.append(editName,editDate,editDescription,prioritySelector,submitEditBtn)
+    taskEdit.append(editFormFieldset,editDescription,prioritySelector,submitEditBtn)
     /*------ Edit Form ------*/
 
     task.append(taskInfo,taskContent,taskEdit);
